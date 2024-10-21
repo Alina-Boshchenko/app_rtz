@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стартовая страница</title>
+  <link rel="stylesheet" href="/css/common_for_lc_style.css"/>
+  <link rel="stylesheet" href="/css/storekeeper_create_product.css" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous"
+  />
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <div class="header-container">
+      <a href="#" class="branding">
+        <img
+                src="imeg/label.png"
+                alt="logo"
+                style="width: 100px; height: 100px; border-radius: 50%"
+        />
+      </a>
+
+      <nav class="navigation">
+        <a href="#">Регистрация товара</a>
+        <a href="#">Публикация новости</a>
+      </nav>
+
+      <a href="#" class="notifications">Уведомления</a>
+
+      <button class="auth-button">Профиль</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="sidebar">
+      <a href="#">Профиль</a>
+      <a href="#">Склад</a>
+      <a href="#">Контрагенты</a>
+      <a href="#">Сотрудники</a>
+      <a href="#">Календарь отгрузок</a>
+      <a href="#">Новости</a>
+    </div>
+
+    <div class="content">
+
+      <form id="productForm">
+        <select id="rolledName"></select>
+        <select id="typeName"></select>
+        <select id="standardName"></select>
+        <select id="steelGradeName"></select>
+
+        <label for="name">Наименование товара:</label>
+        <input type="text" id="name" name="name" placeholder="Трубы ВГП оцинкованные" required>
+
+        <label for="size">Размер:</label>
+        <input type="text" id="size" name="size" placeholder="40х3" required>
+<!--        TODO сделать чтобы числовые данные не уходили в минус и шаг поменять  -->
+        <label for="length">Длина в миллиметрах:</label>
+        <input type="number" id="length" name="length" placeholder="6000" step="0.1">
+
+        <label for="thickness">Толщина(при необходимости)в миллиметрах:</label>
+        <input type="number" id="thickness" name="thickness" placeholder="1.5" step="0.01">
+
+        <label for="weight">Вес изделия(при необходимости)в кг:</label>
+        <input type="number" id="weight" name="weight" placeholder="2017.08" step="0.01">
+
+        <label for="pricePerMeter">Цена за метр в рублях:</label>
+        <input type="number" id="pricePerMeter" name="pricePerMeter" placeholder="374.00" step="0.01">
+
+        <label for="pricePerTon">Цена за тонну в рублях:</label>
+        <input type="number" id="pricePerTon" name="pricePerTon" placeholder="97500.00" step="0.01">
+
+        <button type="button" id="saveProduct">Сохранить</button>
+      </form>
+
+    </div>
+  </main>
+
+  <footer>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img
+                    src="imeg/label.png"
+                    alt="logo"
+                    style="width: 100px; height: 100px; border-radius: 50%"
+            />
+            <a href="#" class="href-footer">РЯЗАНСКИЙ ТРУБНЫЙ ЗАВОД</a>
+          </div>
+          <div class="col-md-4">
+            <h5>Контакты</h5>
+            <p>Телефон: +7 (4912) 45-50-00</p>
+            <p>Email: zakaz-ryazan@</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Адрес</h5>
+            <p>390011, г. Рязань, Южный Промузел, 6, стр. 36, оф. 100</p>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="footer-bottom">
+          <div>
+            <p>© 2024. Все права защищены</p>
+          </div>
+          <div>
+            <a href="#" class="href-footer">Политика конфиденциальности</a>
+          </div>
+          <div>
+            <a href="#" class="href-footer">Пользовательское соглашение</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </footer>
+</div>
+<script src="/js/storekeeper_create_product.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>
