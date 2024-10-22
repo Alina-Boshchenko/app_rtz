@@ -1,9 +1,7 @@
 package ru.boshchenko.rtz_app.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 
@@ -13,6 +11,7 @@ import java.util.Collection;
 
 @Entity
 @Data
+@Builder(access = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "organizations")

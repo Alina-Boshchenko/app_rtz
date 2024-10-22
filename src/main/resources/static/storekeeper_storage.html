@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Стартовая страница</title>
   <link rel="stylesheet" href="/css/common_for_lc_style.css"/>
-  <link rel="stylesheet" href="/css/storekeeper_create_product.css" />
+  <link rel="stylesheet" href="/css/storekeeper_storage.css" />
   <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -47,36 +47,20 @@
     </div>
 
     <div class="content">
+      <h1>СКЛАД</h1>
 
-      <form id="productForm">
-        <select id="rolledName"></select>
-        <select id="typeName"></select>
-        <select id="standardName"></select>
-        <select id="steelGradeName"></select>
 
-        <label for="name">Наименование товара:</label>
-        <input type="text" id="name" name="name" placeholder="Трубы ВГП оцинкованные" required>
+      <div id="productList"></div>
+      <div class="pagination">
+        <button onclick="changePage('start')"><<</button>
+        <button onclick="changePage('prev')"><</button>
+        <button onclick="changePage('next')">></button>
+        <button onclick="changePage('end')">>></button>
+      </div>
 
-        <label for="size">Размер:</label>
-        <input type="text" id="size" name="size" placeholder="40х3" required>
-<!--        TODO сделать чтобы числовые данные не уходили в минус и шаг поменять  -->
-        <label for="length">Длина в миллиметрах:</label>
-        <input type="number" id="length" name="length" placeholder="6000" step="0.1">
 
-        <label for="thickness">Толщина(при необходимости)в миллиметрах:</label>
-        <input type="number" id="thickness" name="thickness" placeholder="1.5" step="0.01">
 
-        <label for="weight">Вес изделия(при необходимости)в кг:</label>
-        <input type="number" id="weight" name="weight" placeholder="2017.08" step="0.01">
 
-        <label for="pricePerMeter">Цена за метр в рублях:</label>
-        <input type="number" id="pricePerMeter" name="pricePerMeter" placeholder="374.00" step="0.01">
-
-        <label for="pricePerTon">Цена за тонну в рублях:</label>
-        <input type="number" id="pricePerTon" name="pricePerTon" placeholder="97500.00" step="0.01">
-
-        <button type="button" id="saveProduct">Сохранить</button>
-      </form>
 
     </div>
   </main>
@@ -119,7 +103,7 @@
     </footer>
   </footer>
 </div>
-<script src="/js/storekeeper_create_product.js"></script>
+<script src="/js/storekeeper_storage.js"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

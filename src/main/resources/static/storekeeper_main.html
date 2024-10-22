@@ -38,7 +38,7 @@
 
   <main>
     <div class="sidebar">
-      <a href="#">Профиль</a>
+      <a href="storekeeper_main.html">Профиль</a>
       <a href="#">Склад</a>
       <a href="#">Контрагенты</a>
       <a href="#">Сотрудники</a>
@@ -47,6 +47,66 @@
     </div>
 
     <div class="content">
+      <div id="individualForm">
+        <div class="row mb-3">
+          <div class="col">
+            <!-- Блок для загрузки фото -->
+            <div class="upload-container">
+              <span class="upload-text">Загрузить фото/лейбл</span>
+              <input type="file" accept="image/*" id="img" />
+            </div>
+          </div>
+          <div class="col">
+            <!-- Блок для логина -->
+            <div id="dataLogin">Здесь должен отображаться логин...</div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="input-container">
+              <label for="textInput"></label>
+              <input type="text" id="lastName" placeholder="Фамилия:" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-container">
+              <label for="textInput"></label>
+              <input type="text" id="firstName" placeholder="Имя:" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-container">
+              <label for="textInput"></label>
+              <input
+                      type="text"
+                      id="patronymic"
+                      placeholder="Отчество:"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="input-container">
+              <label for="textInput"></label>
+              <input type="text" id="inn" placeholder="ИНН:" />
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <div id="dataPhone">Здесь должен отображаться телефон...</div>
+          </div>
+          <div class="col">
+            <div id="dataEmail">Здесь должена отображаться почта...</div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <button type="button" id="saveButtonPerson">Сохранить</button>
+          </div>
+        </div>
+      </div>
 
       </div>
   </main>
