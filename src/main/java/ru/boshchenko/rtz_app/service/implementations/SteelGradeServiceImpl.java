@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import ru.boshchenko.rtz_app.dto.SteelGradeDto;
+import ru.boshchenko.rtz_app.mapper.SteelGradeMapper;
 import ru.boshchenko.rtz_app.model.SteelGrade;
 import ru.boshchenko.rtz_app.repository.SteelGradeRepo;
 import lombok.RequiredArgsConstructor;
@@ -16,18 +17,19 @@ import java.util.Optional;
 public class SteelGradeServiceImpl implements SteelGradeService {
 
     private final SteelGradeRepo steelGradeRepo;
-    private final MappingUtilsSteelGrade mappingUtilsSteelGrade;
+//    private final MappingUtilsSteelGrade mappingUtilsSteelGrade;
+    private final SteelGradeMapper steelGradeMapper;
 
     @Override
     public SteelGrade save(SteelGradeDto steelGradeDto) {
-        return steelGradeRepo.save(mappingUtilsSteelGrade.toSteelGrade(steelGradeDto));
+        return steelGradeRepo.save(steelGradeMapper.toSteelGrade(steelGradeDto));
     }
 
     @Override
     public SteelGradeDto findByName(String name) {
         Optional<SteelGrade> optionalSteelGrade = steelGradeRepo.findByName(name);
         //TODO сделать исключение
-        if (optionalSteelGrade.isPresent()) {return mappingUtilsSteelGrade.toSteelGradeDto(optionalSteelGrade.get());}
+        if (optionalSteelGrade.isPresent()) {return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());}
         return null;
     }
 
@@ -40,13 +42,13 @@ public class SteelGradeServiceImpl implements SteelGradeService {
     public SteelGradeDto findById(Long id) {
         Optional<SteelGrade> optionalSteelGrade = steelGradeRepo.findById(id);
         //TODO сделать исключение
-        if (optionalSteelGrade.isPresent()) {return mappingUtilsSteelGrade.toSteelGradeDto(optionalSteelGrade.get());}
+        if (optionalSteelGrade.isPresent()) {return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());}
         return null;
     }
 
     @Override
     public List<SteelGradeDto> findAll() {
-        return steelGradeRepo.findAll().stream().map(mappingUtilsSteelGrade::toSteelGradeDto).toList();
+        return steelGradeRepo.findAll().stream().map(steelGradeMapper::toSteelGradeDto).toList();
     }
 
     @Override

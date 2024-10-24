@@ -1,15 +1,6 @@
 package ru.boshchenko.rtz_app.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class StandardDto {
+public record StandardDto (String name) {
 
-    private String name;
 }

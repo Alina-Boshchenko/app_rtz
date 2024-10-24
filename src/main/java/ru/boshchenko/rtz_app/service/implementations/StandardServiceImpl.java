@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import ru.boshchenko.rtz_app.dto.StandardDto;
+import ru.boshchenko.rtz_app.mapper.StandardMapper;
 import ru.boshchenko.rtz_app.model.Standard;
 import ru.boshchenko.rtz_app.repository.StandardRepo;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +17,13 @@ import java.util.Optional;
 public class StandardServiceImpl implements StandardService {
 
     private final StandardRepo standardRepo;
-    private final MappingUtilsStandard mappingUtilsStandard;
+//    private final MappingUtilsStandard mappingUtilsStandard;
+    private final StandardMapper standardMapper;
 
 
     @Override
     public Standard save(StandardDto standardDto) {
-        return standardRepo.save(mappingUtilsStandard.toStandard(standardDto));
+        return standardRepo.save(standardMapper.toStandard(standardDto));
     }
 
     @Override
@@ -29,7 +31,7 @@ public class StandardServiceImpl implements StandardService {
         Optional<Standard> standard = standardRepo.findByName(name);
         //TODO сделать исключение
         if (standard.isPresent()) {
-            return mappingUtilsStandard.toStandardDto(standard.get());
+            return standardMapper.toStandardDto(standard.get());
         } return null;
     }
 
@@ -42,13 +44,13 @@ public class StandardServiceImpl implements StandardService {
     public StandardDto findById(Long id) {
         Optional<Standard> standard = standardRepo.findById(id);
         //TODO сделать исключение
-        if (standard.isPresent()) {return mappingUtilsStandard.toStandardDto(standard.get());}
+        if (standard.isPresent()) {return standardMapper.toStandardDto(standard.get());}
         return null;
     }
 
     @Override
     public List<StandardDto> findAll() {
-        return standardRepo.findAll().stream().map(mappingUtilsStandard::toStandardDto).toList();
+        return standardRepo.findAll().stream().map(standardMapper::toStandardDto).toList();
     }
 
     @Override

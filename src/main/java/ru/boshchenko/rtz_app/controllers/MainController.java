@@ -56,6 +56,11 @@ public class MainController {
         return "storekeeper_storage.html";
     }
 
+    @GetMapping("/manager_main")
+    public String managerMainPage(){
+        return "manager_main.html";
+    }
+
 
 
     // storekeeper_create_product

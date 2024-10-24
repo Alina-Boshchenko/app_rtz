@@ -15,7 +15,6 @@ public interface RolledService {
 
     Rolled findByNameRolled(String name);
 
-
     RolledDto findById(Long id);
 
     List<RolledDto> findAll();
@@ -26,6 +25,6 @@ public interface RolledService {
 
     boolean existsById(Long id);
 
-//    Rolled update(Rolled rolled);
+//    RolledDto update(RolledDto rolledDto);
 
 }

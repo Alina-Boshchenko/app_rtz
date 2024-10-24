@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import ru.boshchenko.rtz_app.dto.ProductDto;
+import ru.boshchenko.rtz_app.mapper.ProductMapper;
 import ru.boshchenko.rtz_app.model.Product;
 import ru.boshchenko.rtz_app.repository.ProductRepo;
 import ru.boshchenko.rtz_app.service.interfaces.ProductService;
@@ -16,11 +17,12 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepo productRepo;
-    private final MappingUtilsProduct mappingUtilsProduct;
+//    private final MappingUtilsProduct mappingUtilsProduct;
+    private final ProductMapper productMapper;
 
     @Override
     public Product save(ProductDto productDto) {
-        return productRepo.save(mappingUtilsProduct.toProduct(productDto));
+        return productRepo.save(productMapper.toProduct(productDto));
     }
 
     @Override
@@ -28,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = productRepo.findByName(name);
         //TODO сделать исключение
         if (product.isPresent()) {
-            return mappingUtilsProduct.toProductDto(product.get());
+            return productMapper.toProductDto(product.get());
         }
         return null;
     }
@@ -38,14 +40,14 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> product = productRepo.findById(id);
         //TODO сделать исключение
         if (product.isPresent()) {
-            return mappingUtilsProduct.toProductDto(product.get());
+            return productMapper.toProductDto(product.get());
         }
         return null;
     }
 
     @Override
     public List<ProductDto> findAll() {
-        return productRepo.findAll().stream().map(mappingUtilsProduct::toProductDto).toList();
+        return productRepo.findAll().stream().map(productMapper::toProductDto).toList();
     }
 
     @Override

@@ -4,10 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(access = AccessLevel.PUBLIC)
+//@Builder(access = AccessLevel.PUBLIC)
 @Table(name = "products")
 public class Product {
     @Id

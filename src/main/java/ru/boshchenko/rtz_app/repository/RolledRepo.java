@@ -11,6 +11,4 @@ public interface RolledRepo extends JpaRepository<Rolled, Long> {
 
     Optional<Rolled> findByName(String name);
 
-//    Optional<Rolled> update(Rolled rolled);
-
 }

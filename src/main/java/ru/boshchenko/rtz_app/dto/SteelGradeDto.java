@@ -1,15 +1,5 @@
 package ru.boshchenko.rtz_app.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record SteelGradeDto (String name) {
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class SteelGradeDto {
-
-    private String name;
 }

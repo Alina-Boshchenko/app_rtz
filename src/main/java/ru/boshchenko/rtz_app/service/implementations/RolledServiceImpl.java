@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import ru.boshchenko.rtz_app.dto.RolledDto;
+import ru.boshchenko.rtz_app.mapper.RolledMapper;
 import ru.boshchenko.rtz_app.model.Rolled;
 import ru.boshchenko.rtz_app.repository.RolledRepo;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +17,13 @@ import java.util.Optional;
 public class RolledServiceImpl implements RolledService {
 
     private final RolledRepo repo;
-    private final MappingUtilsRolled mappingUtilsRolled;
+//    private final MappingUtilsRolled mappingUtilsRolled;
+    private final RolledMapper rolledMapper;
 
     
     @Override
     public Rolled save(RolledDto rolledDto) {
-        return repo.save(mappingUtilsRolled.toRolled(rolledDto));
+        return repo.save(rolledMapper.toRolled(rolledDto));
     }
 
     @Override
@@ -29,7 +31,7 @@ public class RolledServiceImpl implements RolledService {
         Optional<Rolled> rolled = repo.findByName(name);
         //TODO сделать исключение
         if(rolled.isPresent()){
-            return mappingUtilsRolled.toRolledDto(rolled.get());
+            return rolledMapper.toRolledDto(rolled.get());
         } return null;
     }
 
@@ -43,14 +45,14 @@ public class RolledServiceImpl implements RolledService {
         Optional<Rolled> rolled = repo.findById(id);
         //TODO сделать исключение
         if(rolled.isPresent()){
-            return mappingUtilsRolled.toRolledDto(rolled.get());
+            return rolledMapper.toRolledDto(rolled.get());
         }
         return null;
     }
 
     @Override
     public List<RolledDto> findAll() {
-        return repo.findAll().stream().map(mappingUtilsRolled::toRolledDto).toList();
+        return repo.findAll().stream().map(rolledMapper::toRolledDto).toList();
     }
 
     @Override
@@ -71,12 +73,16 @@ public class RolledServiceImpl implements RolledService {
         return repo.existsById(id);
     }
 
+
 //    @Override
-//    public Rolled update(Rolled rolled) {
-//        Optional<Rolled> rolledNew = repo.update(rolled);
-//        //TODO сделать исключение
-//        if(rolledNew.isPresent()){
-//            return rolledNew.get();
-//        } return null;
+//    public RolledDto update(RolledDto rolledDto) {
+//        Rolled rolled = mappingUtilsRolled.toRolled(rolledDto);
+//
+//
+//
+//
+//        return null;
 //    }
+
+
 }

@@ -68,26 +68,39 @@ function initializeForm() {
 // тут на сервер отправляем
 function saveProduct() {
 
+    var name = document.getElementById('name').value.trim();
+    var pricePerMeter = parseFloat(document.getElementById('pricePerMeter').value.trim());
+    var pricePerTon = parseFloat(document.getElementById('pricePerTon').value.trim());
+
+
+    if (!name) {
+        alert('Введите название товара');
+        return;
+    }
+    if (!pricePerMeter) {
+        alert('Введите цену товара за метр');
+        return;
+    }
+    if (!pricePerTon) {
+        alert('Введите цену товара за тонну');
+        return;
+    }
 
     // логика проверки, что данные введены, только обязательные поля проверяю
 
 
-
-
-
-
-    const product = {
-        rolledName: document.getElementById('rolledName').value,
-        typeName: document.getElementById('typeName').value,
-        standardName: document.getElementById('standardName').value,
-        steelGradeName: document.getElementById('steelGradeName').value,
-        name: document.getElementById('name').value,
-        size: document.getElementById('size').value,
-        length: parseFloat(document.getElementById('length').value),
-        thickness: parseFloat(document.getElementById('thickness').value),
-        weight: parseFloat(document.getElementById('weight').value),
-        pricePerMeter: parseFloat(document.getElementById('pricePerMeter').value),
-        pricePerTon: parseFloat(document.getElementById('pricePerTon').value)
+    var data = {
+        rolledName: document.getElementById('rolledName').value.trim(),
+        typeName: document.getElementById('typeName').value.trim(),
+        standardName: document.getElementById('standardName').value.trim(),
+        steelGradeName: document.getElementById('steelGradeName').value.trim(),
+        name: name,
+        size: document.getElementById('size').value.trim(),
+        length: parseFloat(document.getElementById('length').value.trim()),
+        thickness: parseFloat(document.getElementById('thickness').value.trim()),
+        weight: parseFloat(document.getElementById('weight').value.trim()),
+        pricePerMeter: pricePerMeter,
+        pricePerTon: pricePerTon
     };
 
     fetch('http://localhost:8080/api/product/creat', {
@@ -95,18 +108,69 @@ function saveProduct() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(product)
-    }).then(response => {
-        if (response.ok) {
-            //если ответ норм от сервака, очищ. форму+вывод инфо, что товар сохранен
+        body: JSON.stringify(data)
+    })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
+            }
+            // Проверяем, есть ли тело ответа
+            return response.text().then(function(text) {
+                if (text) {
+                    try {
+                        return JSON.parse(text);
+                    } catch(e) {
+                        console.error('Ошибка разбора JSON:', e);
+                        return {};
+                    }
+                } else {
+                    return {};
+                }
+            });
+        })
+        .then(function(data) {
+            // Очищаем поля формы
             document.getElementById('productForm').reset();
             alert('Товар сохранен');
-        } else {
-            console.error('Ошибка сервера:', response.statusText);
-        }
-    }).catch(error => {
-        console.error('Ошибка сети:', error);
-    });
+        })
+        .catch(function(error) {
+            console.error('Ошибка сети:', error);
+        });
+
+    // fetch('http://localhost:8080/api/product/creat', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(data)
+    // }).then(response => {
+    //     if (!response.ok) {
+    //         throw new Error('Ошибка сети');
+    //         //если ответ норм от сервака, очищ. форму+вывод инфо, что товар сохранен
+    //         // document.getElementById('productForm').reset();
+    //         // alert('Товар сохранен');
+    //     }
+    //     return response.text().then(text => {
+    //         if (text) {
+    //             try {
+    //                 return JSON.parse(text);
+    //             } catch (e) {
+    //                 console.error('Ошибка разбора JSON:', e);
+    //                 return {};
+    //             }
+    //         } else {
+    //             return {};
+    //         }
+    //     })
+    // })
+    //     .then(function(data) {
+    //         // Очищаем поля формы
+    //         document.getElementById('productForm').reset();
+    //         alert('Товар сохранен');
+    //     })
+    //     .catch(function(error) {
+    //         console.error('Ошибка сети:', error);
+    //     });
 }
 
 // Обработчик клика кнопки "сохранить"

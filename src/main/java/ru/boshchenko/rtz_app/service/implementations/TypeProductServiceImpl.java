@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import ru.boshchenko.rtz_app.dto.TypeProductDto;
+import ru.boshchenko.rtz_app.mapper.TypeProductMapper;
 import ru.boshchenko.rtz_app.model.TypeProduct;
 import ru.boshchenko.rtz_app.repository.TypeProductRepo;
 import lombok.RequiredArgsConstructor;
@@ -16,18 +17,19 @@ import java.util.Optional;
 public class TypeProductServiceImpl implements TypeProductService {
 
     private final TypeProductRepo typeRepo;
-    private final MappingUtilsTypeProduct mappingUtilsTypeProduct;
+//    private final MappingUtilsTypeProduct mappingUtilsTypeProduct;
+    private final TypeProductMapper typeProductMapper;
 
     @Override
     public TypeProduct save(TypeProductDto typeProductDto) {
-        return typeRepo.save(mappingUtilsTypeProduct.toTypeProduct(typeProductDto));
+        return typeRepo.save(typeProductMapper.toTypeProduct(typeProductDto));
     }
 
     @Override
     public TypeProductDto findByName(String name) {
         Optional<TypeProduct> type = typeRepo.findByName(name);
         //TODO сделать исключение
-        if (type.isPresent()) {return mappingUtilsTypeProduct.toTypeProductDto(type.get());}
+        if (type.isPresent()) {return typeProductMapper.toTypeProductDto(type.get());}
         return null;
     }
 
@@ -40,13 +42,13 @@ public class TypeProductServiceImpl implements TypeProductService {
     public TypeProductDto findById(Long id) {
         Optional<TypeProduct> type = typeRepo.findById(id);
         //TODO сделать исключение
-        if (type.isPresent()) {return mappingUtilsTypeProduct.toTypeProductDto(type.get());}
+        if (type.isPresent()) {return typeProductMapper.toTypeProductDto(type.get());}
         return null;
     }
 
     @Override
     public List<TypeProductDto> findAll() {
-        return typeRepo.findAll().stream().map(mappingUtilsTypeProduct::toTypeProductDto).toList();
+        return typeRepo.findAll().stream().map(typeProductMapper::toTypeProductDto).toList();
     }
 
     @Override
