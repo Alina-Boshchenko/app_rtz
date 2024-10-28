@@ -61,6 +61,20 @@ public class MainController {
         return "manager_main.html";
     }
 
+    @GetMapping("/client_product_card")
+    public String productCardPage(){
+        return "client_product_card.html";
+    }
+    @GetMapping("/manager_product_card")
+    public String managerProductCardPage(){
+        return "manager_product_card.html";
+    }
+
+    @GetMapping("/storekeeper_product_card")
+    public String storekeeperProductCardPage(){
+        return "storekeeper_product_card.html";
+    }
+
 
 
     // storekeeper_create_product

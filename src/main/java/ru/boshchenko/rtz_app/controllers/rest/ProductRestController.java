@@ -37,6 +37,13 @@ public class ProductRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //TODO посмотреть какой должен быть статус ответа
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
+        System.out.println(productDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 //    @CrossOrigin(origins = "http://localhost:63343")
 //    @GetMapping
 //    public void creatTest(){
@@ -61,7 +68,6 @@ public class ProductRestController {
 //    }
 
     @PostMapping("/creat")
-
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
         productService.save(productDto);
         System.out.println(productDto.toString());

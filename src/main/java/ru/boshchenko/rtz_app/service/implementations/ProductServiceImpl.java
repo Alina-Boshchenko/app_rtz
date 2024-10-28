@@ -67,4 +67,12 @@ public class ProductServiceImpl implements ProductService {
     public boolean existsById(Long id) {
         return productRepo.existsById(id);
     }
+
+    @Override
+    public ProductDto updateById(Long id, String data) {
+
+
+
+        return null;
+    }
 }

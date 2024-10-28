@@ -23,4 +23,6 @@ public interface ProductService {
 
     boolean existsById(Long id);
 
+    ProductDto updateById(Long id, String data);
+
 }
