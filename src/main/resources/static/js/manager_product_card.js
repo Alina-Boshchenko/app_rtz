@@ -1,91 +1,87 @@
+let productData = {};
 
-async function fetchProductData() {
-    // для проверки пока комечу, хз как передавать сюда айдишку
-
-
-    // const params = new URLSearchParams(window.location.search);
-    // const id = params.get('id');
-    // if (!id) {
-    //     console.error('Не найден id товара в URL');
-    //     return;
-    // }
-    ///
-
-    ///// если автоматически делать, то в феч передавать нужно будет такой юрик /api/product/${productId}
-
+async function fetchProductData(id) {
     try {
-        const response = await fetch(`/api/product/1`);
+        const response = await fetch(`/api/product/${id}`);
         if (!response.ok) {
-            console.error('Ошибка сети');
-            return;
+            throw new Error('Ошибка сети');
         }
-        const data = await response.json();
-
-        const fields = ['rolledName', 'typeName', 'name', 'standardName', 'steelGradeName',
-            'size', 'length', 'thickness', 'weight', 'pricePerMeter', 'pricePerTon'];
-
-        fields.forEach(field => {
-            const element = document.getElementById(field);
-            if (element && data[field]) {
-                element.textContent = data[field];
-            }
-        });
-
+        productData = await response.json();
+        productData.id = id; // Убедимся, что id включен
+        populateProductData(productData);
     } catch (error) {
-        console.error('Ошибка при получении данных:', error);
+        console.error('Ошибка при получении данных о товаре:', error);
     }
 }
 
+function populateProductData(data) {
+    const fields = ['rolledName', 'typeName', 'name', 'standardName', 'steelGradeName', 'size', 'length', 'thickness', 'weight', 'pricePerMeter', 'pricePerTon'];
+    fields.forEach(field => {
+        const element = document.getElementById(field);
+        if (element && data[field] !== undefined && data[field] !== null) {
+            element.textContent = data[field];
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchProductData();
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const id = urlParams.get('id'); // Получаем параметр 'id' из URL
+    // // if (id) {
+    // //     // fetchProductData(id);
+    // // } else {
+    // //     console.error('ID товара не указан в параметрах URL.');
+    // // }
+// вместо части кода выше, пока просто передаю первый айдишник
+    fetchProductData(1);
 
-    // Элементы управления
-    const editButton = document.getElementById('editButton');
-    const editFields = document.getElementById('editFields');
-    const saveButton = document.getElementById('saveButton');
-    const pricePerTonField = document.getElementById('pricePerTon');
-    const pricePerTonInput = document.getElementById('pricePerTonInput');
-    const pricePerMeterField = document.getElementById('pricePerMeter');
-    const pricePerMeterInput = document.getElementById('pricePerMeterInput');
-
-    editButton.addEventListener('click', () => {
-        editButton.style.display = 'none';
-        editFields.classList.remove('d-none');
-        pricePerTonInput.value = pricePerTonField.textContent;
-        pricePerMeterInput.value = pricePerMeterField.textContent;
+    document.getElementById('editButton').addEventListener('click', () => {
+        // Скрываем кнопку "Изменить"
+        document.getElementById('editButton').style.display = 'none';
+        // Показываем поля ввода и кнопку "Сохранить"
+        document.getElementById('editFields').style.display = 'block';
+        // Заполняем поля текущими значениями
+        const pricePerTonText = document.getElementById('pricePerTon').textContent;
+        document.getElementById('pricePerTonInput').value = pricePerTonText;
+        const pricePerMeterText = document.getElementById('pricePerMeter').textContent;
+        document.getElementById('pricePerMeterInput').value = pricePerMeterText;
     });
 
-    saveButton.addEventListener('click', async () => {
+    document.getElementById('saveButton').addEventListener('click', async () => {
+        // Получаем значения из полей ввода
+        const pricePerTonValue = document.getElementById('pricePerTonInput').value;
+        const pricePerMeterValue = document.getElementById('pricePerMeterInput').value;
 
-        // для проверки пока комечу, хз как передавать сюда айдишку
+        // Обновляем объект productData
+        productData.pricePerTon = pricePerTonValue;
+        productData.pricePerMeter = pricePerMeterValue;
 
-        // const params = new URLSearchParams(window.location.search);
-        // const id = params.get('id');
-        // if (!id) {
-        //     console.error('Не найден id товара в URL');
-        //     return;
-        // }
-
-        const updatedData = {
-            pricePerTon: pricePerTonInput.value,
-            pricePerMeter: pricePerMeterInput.value
-        };
+        // Отправляем PATCH-запрос на сервер
+        // /api/product/${productData.id}
         try {
-            ///// потом поменять на переменную пути "/api/product/${id}"
             const response = await fetch(`/api/product/1`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(updatedData)
+                body: JSON.stringify(productData)
             });
-            if (!response.ok) {
-                console.error('Ошибка сети при сохранении данных');
-                return;
+            if (response.ok) {
+                alert('Изменения успешно сохранены. Пожалуйста, перезагрузите страницу.');
+
+                // Скрываем поля ввода и кнопку "Сохранить"
+                document.getElementById('editFields').style.display = 'none';
+                // Показываем кнопку "Изменить"
+                document.getElementById('editButton').style.display = 'block';
+                // Обновляем отображаемые значения цен
+                document.getElementById('pricePerTon').textContent = productData.pricePerTon;
+                document.getElementById('pricePerMeter').textContent = productData.pricePerMeter;
+            } else {
+                throw new Error('Ошибка при сохранении изменений.');
             }
-            alert('Изменения успешно сохранены. Пожалуйста, перезагрузите страницу.');
         } catch (error) {
-            console.error('Ошибка при сохранении данных:', error);
+            console.error('Ошибка при отправке данных на сервер:', error);
+            alert('Произошла ошибка при сохранении изменений.');
         }
     });
 });

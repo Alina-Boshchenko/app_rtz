@@ -69,10 +69,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto updateById(Long id, String data) {
-
-
-
-        return null;
+    public ProductDto updateById(Long id, ProductDto productDto) {
+        Product productNew = productMapper.toProduct(productDto);
+        if (productRepo.findById(id).isEmpty()) {
+            return null;
+        }
+        Product product = productRepo.findById(id).get();
+        product.setRolled(productNew.getRolled());
+        product.setType(productNew.getType());
+        product.setName(productNew.getName());
+        product.setStandard(productNew.getStandard());
+        product.setSteelGrade(productNew.getSteelGrade());
+        product.setSize(productNew.getSize());
+        product.setLength(productNew.getLength());
+        product.setThickness(productNew.getThickness());
+        product.setWeight(productNew.getWeight());
+        product.setPricePerMeter(productNew.getPricePerMeter());
+        product.setPricePerTon(productNew.getPricePerTon());
+        productRepo.save(product);
+        return productMapper.toProductDto(product);
     }
 }

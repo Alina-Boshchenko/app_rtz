@@ -45,104 +45,90 @@
 
     <div class="content">
       <div class="container mt-4">
+        <!-- Заголовок с id="name" -->
         <h1 id="name"></h1>
+        <!-- Основной контент -->
         <div class="row">
+          <!-- Левый блок -->
           <div class="col-md-6">
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Прокат:</div>
-              <div class="col-sm-8" id="rolledName"></div>
+            <!-- Блок 1: Прокат -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Прокат:</div>
+              <div id="rolledName" class="ms-2"></div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Тип:</div>
-              <div class="col-sm-8" id="typeName"></div>
+            <!-- Блок 2: Тип -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Тип:</div>
+              <div id="typeName" class="ms-2"></div>
             </div>
-
-            <div class="row mb-2 align-items-center">
-              <div class="col-sm-4">Цена от</div>
-              <div class="col-sm-4" id="pricePerTon"></div>
-              <div class="col-sm-4">р/т</div>
+            <!-- Блок 3: Цена от (р/т) -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Цена от</div>
+              <div id="pricePerTon" class="ms-2"></div>
+              <div class="ms-1">р/т</div>
             </div>
-
-            <div class="row mb-2 align-items-center">
-              <div class="col-sm-4">Цена от</div>
-              <div class="col-sm-4" id="pricePerMeter"></div>
-              <div class="col-sm-4">р/м</div>
+            <!-- Блок 4: Цена от (р/м) -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Цена от</div>
+              <div id="pricePerMeter" class="ms-2"></div>
+              <div class="ms-1">р/м</div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-12">
-                <button id="editButton" class="btn btn-primary">Изменить</button>
+            <!-- Кнопка "Изменить" -->
+            <button id="editButton" class="btn btn-primary mb-2">Изменить</button>
+            <!-- Поля ввода и кнопка "Сохранить" -->
+            <div id="editFields" style="display: none;">
+              <!-- Поле ввода для pricePerTon -->
+              <div class="d-flex align-items-center mb-2">
+                <label for="pricePerTonInput">Цена от</label>
+                <input type="number" id="pricePerTonInput" class="form-control ms-2" placeholder="р/т">
               </div>
+              <!-- Поле ввода для pricePerMeter -->
+              <div class="d-flex align-items-center mb-2">
+                <label for="pricePerMeterInput">Цена от</label>
+                <input type="number" id="pricePerMeterInput" class="form-control ms-2" placeholder="р/м">
+              </div>
+              <!-- Кнопка "Сохранить" -->
+              <button id="saveButton" class="btn btn-success">Сохранить</button>
             </div>
-
-            <div id="editFields" class="d-none">
-              <div class="row mb-2 align-items-center">
-                <div class="col-sm-4">Цена от</div>
-                <div class="col-sm-4">
-                  <input type="number" class="form-control" id="pricePerTonInput" placeholder="Введите цену за т">
-                </div>
-                <div class="col-sm-4">р/т</div>
-              </div>
-              <div class="row mb-2 align-items-center">
-                <div class="col-sm-4">Цена от</div>
-                <div class="col-sm-4">
-                  <input type="number" class="form-control" id="pricePerMeterInput" placeholder="Введите цену за м">
-                </div>
-                <div class="col-sm-4">р/м</div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-12">
-                  <button id="saveButton" class="btn btn-success">Сохранить</button>
-                </div>
-              </div>
-            </div>
-
           </div>
+          <!-- Правый блок -->
           <div class="col-md-6">
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Стандарт:</div>
-              <div class="col-sm-8" id="standardName"></div>
+            <!-- Блок 1: Стандарт -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Стандарт:</div>
+              <div id="standardName" class="ms-2"></div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Марка стали:</div>
-              <div class="col-sm-8" id="steelGradeName"></div>
+            <!-- Блок 2: Марка стали -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Марка стали:</div>
+              <div id="steelGradeName" class="ms-2"></div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Размер:</div>
-              <div class="col-sm-8" id="size"></div>
+            <!-- Блок 3: Размер -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Размер:</div>
+              <div id="size" class="ms-2"></div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Длина:</div>
-              <div class="col-sm-8">
-                <span id="length"></span> мм
-              </div>
+            <!-- Блок 4: Длина -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Длина:</div>
+              <div id="length" class="ms-2"></div>
+              <div class="ms-1">мм</div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Толщина:</div>
-              <div class="col-sm-8">
-                <span id="thickness"></span> мм
-              </div>
+            <!-- Блок 5: Толщина -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Толщина:</div>
+              <div id="thickness" class="ms-2"></div>
+              <div class="ms-1">мм</div>
             </div>
-
-            <div class="row mb-2">
-              <div class="col-sm-4">Вес:</div>
-              <div class="col-sm-8">
-                <span id="weight"></span> кг
-              </div>
+            <!-- Блок 6: Вес -->
+            <div class="d-flex align-items-center mb-2">
+              <div>Вес:</div>
+              <div id="weight" class="ms-2"></div>
+              <div class="ms-1">кг</div>
             </div>
-
           </div>
         </div>
       </div>
-
-
     </div>
   </main>
 
