@@ -1,7 +1,10 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
+import ru.boshchenko.rtz_app.dto.OrganizationDto;
+import ru.boshchenko.rtz_app.mapper.OrganizationMapper;
 import ru.boshchenko.rtz_app.model.Organization;
 import ru.boshchenko.rtz_app.repository.OrganizationRepo;
 import ru.boshchenko.rtz_app.service.interfaces.OrganizationService;
@@ -13,33 +16,39 @@ import java.util.List;
 public class OrganizationServiceImpl implements OrganizationService {
 
     private final OrganizationRepo organizationRepo;
+    private final OrganizationMapper organizationMapper;
 
     @Override
-    public Organization save(Organization organization) {
-        return organizationRepo.save(organization);
+    public Organization save(OrganizationDto organizationDto) {
+        return organizationRepo.save(organizationMapper.toOrganization(organizationDto));
+    }
+
+    @Override
+    public OrganizationDto findByNameDto(String name) {
+        //TODO сделать исключение
+        return organizationMapper.toOrganizationDto(organizationRepo.findByName(name).orElse(null));
     }
 
     @Override
     public Organization findByName(String name) {
-        //TODO сделать исключение
         return organizationRepo.findByName(name).orElse(null);
     }
 
     @Override
-    public Organization findByInn(Long inn) {
+    public OrganizationDto findByInn(Long inn) {
         //TODO сделать исключение
-        return organizationRepo.findByInn(inn).orElse(null);
+        return organizationMapper.toOrganizationDto(organizationRepo.findByInn(inn).orElse(null));
     }
 
     @Override
-    public Organization findById(Long id) {
+    public OrganizationDto findById(Long id) {
         //TODO сделать исключение
-        return organizationRepo.findById(id).orElse(null);
+        return organizationMapper.toOrganizationDto(organizationRepo.findById(id).orElse(null));
     }
 
     @Override
-    public List<Organization> findAll() {
-        return organizationRepo.findAll();
+    public List<OrganizationDto> findAll() {
+        return organizationRepo.findAll().stream().map(o -> organizationMapper.toOrganizationDto(o)).toList();
     }
 
     @Override
@@ -52,8 +61,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public void delete(Organization organization) {
-        organizationRepo.delete(organization);
+    public void delete(OrganizationDto organizationDto) {
+        organizationRepo.delete(organizationMapper.toOrganization(organizationDto));
     }
 
     @Override
@@ -61,4 +70,25 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationRepo.existsById(id);
     }
 
+    @Override
+    public OrganizationDto updateOrganization(Long id, OrganizationDto organizationDto) {
+        Organization organizationNew = organizationMapper.toOrganization(organizationDto);
+        if(organizationRepo.findById(id).isEmpty()){
+            return null;
+        }
+        Organization organization = organizationRepo.findById(id).get();
+        organization.setName(organizationNew.getName());
+        organization.setLegalAddress(organizationNew.getLegalAddress());
+        organization.setOgrn(organizationNew.getOgrn());
+        organization.setInn(organizationNew.getInn());
+        organization.setKpp(organizationNew.getKpp());
+        organization.setBICBank(organizationNew.getBICBank());
+        organization.setBankNames(organizationNew.getBankNames());
+        organization.setPaymentAccount(organizationNew.getPaymentAccount());
+        organizationRepo.save(organization);
+        return organizationMapper.toOrganizationDto(organization);
+    }
+
+
 }
+

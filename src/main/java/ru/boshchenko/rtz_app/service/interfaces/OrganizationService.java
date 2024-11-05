@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.interfaces;
 
 import org.springframework.stereotype.Service;
+import ru.boshchenko.rtz_app.dto.OrganizationDto;
 import ru.boshchenko.rtz_app.model.Organization;
 
 import java.util.List;
@@ -8,7 +9,9 @@ import java.util.List;
 @Service
 public interface OrganizationService {
 
-    Organization save(Organization organization);
+    Organization save(OrganizationDto organizationDto);
+
+    OrganizationDto findByNameDto(String name);
 
     Organization findByName(String name);
 
@@ -16,16 +19,19 @@ public interface OrganizationService {
      * @param inn - ИНН организации
      * @return сущность записи в БД
      */
-    Organization findByInn(Long inn);
+    OrganizationDto findByInn(Long inn);
 
-    Organization findById(Long id);
+    OrganizationDto findById(Long id);
 
-    List<Organization> findAll();
+    List<OrganizationDto> findAll();
 
     boolean deleteById(Long id);
 
-    void delete(Organization organization);
+    void delete(OrganizationDto organizationDto);
 
     boolean existsById(Long id);
+
+    OrganizationDto updateOrganization(Long id, OrganizationDto organizationDto);
+
 
 }

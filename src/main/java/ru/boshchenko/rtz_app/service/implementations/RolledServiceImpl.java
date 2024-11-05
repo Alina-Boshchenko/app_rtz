@@ -16,19 +16,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RolledServiceImpl implements RolledService {
 
-    private final RolledRepo repo;
+    private final RolledRepo rolledRepo;
 //    private final MappingUtilsRolled mappingUtilsRolled;
     private final RolledMapper rolledMapper;
 
     
     @Override
     public Rolled save(RolledDto rolledDto) {
-        return repo.save(rolledMapper.toRolled(rolledDto));
+        return rolledRepo.save(rolledMapper.toRolled(rolledDto));
     }
 
     @Override
     public RolledDto findByName(String name) {
-        Optional<Rolled> rolled = repo.findByName(name);
+        Optional<Rolled> rolled = rolledRepo.findByName(name);
         //TODO сделать исключение
         if(rolled.isPresent()){
             return rolledMapper.toRolledDto(rolled.get());
@@ -37,12 +37,12 @@ public class RolledServiceImpl implements RolledService {
 
     @Override
     public Rolled findByNameRolled(String name) {
-        return repo.findByName(name).orElse(null);
+        return rolledRepo.findByName(name).orElse(null);
     }
 
     @Override
     public RolledDto findById(Long id) {
-        Optional<Rolled> rolled = repo.findById(id);
+        Optional<Rolled> rolled = rolledRepo.findById(id);
         //TODO сделать исключение
         if(rolled.isPresent()){
             return rolledMapper.toRolledDto(rolled.get());
@@ -52,37 +52,38 @@ public class RolledServiceImpl implements RolledService {
 
     @Override
     public List<RolledDto> findAll() {
-        return repo.findAll().stream().map(rolledMapper::toRolledDto).toList();
+        return rolledRepo.findAll().stream().map(rolledMapper::toRolledDto).toList();
     }
 
     @Override
     public boolean deleteById(Long id) {
-        if(repo.existsById(id)){
-            repo.deleteById(id);
+        if(rolledRepo.existsById(id)){
+            rolledRepo.deleteById(id);
             return true;
         } return false;
     }
 
     @Override
-    public void delete(Rolled rolled) {
-        repo.delete(rolled);
+    public void delete(RolledDto rolledDto) {
+        rolledRepo.delete(rolledMapper.toRolled(rolledDto));
     }
 
     @Override
     public boolean existsById(Long id) {
-        return repo.existsById(id);
+        return rolledRepo.existsById(id);
     }
 
 
-//    @Override
-//    public RolledDto update(RolledDto rolledDto) {
-//        Rolled rolled = mappingUtilsRolled.toRolled(rolledDto);
-//
-//
-//
-//
-//        return null;
-//    }
-
+    @Override
+    public RolledDto update(Long id, RolledDto rolledDto) {
+        Rolled rolledNew = rolledMapper.toRolled(rolledDto);
+        if(rolledRepo.findById(id).isEmpty()){
+            return null;
+        }
+        Rolled rolled = rolledRepo.findById(id).get();
+        rolled.setName(rolledNew.getName());
+        rolledRepo.save(rolled);
+        return rolledMapper.toRolledDto(rolled);
+    }
 
 }

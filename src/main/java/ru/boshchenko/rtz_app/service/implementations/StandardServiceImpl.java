@@ -62,12 +62,24 @@ public class StandardServiceImpl implements StandardService {
     }
 
     @Override
-    public void delete(Standard standard) {
-        standardRepo.delete(standard);
+    public void delete(StandardDto standardDto) {
+        standardRepo.delete(standardMapper.toStandard(standardDto));
     }
 
     @Override
     public boolean existsById(Long id) {
         return standardRepo.existsById(id);
+    }
+
+    @Override
+    public StandardDto updateStandard(Long id, StandardDto standardDto) {
+        Standard standardNew = standardMapper.toStandard(standardDto);
+        if(standardRepo.findById(id).isEmpty()){
+            return null;
+        }
+        Standard standard = standardRepo.findById(id).get();
+        standard.setName(standardNew.getName());
+        standardRepo.save(standard);
+        return standardMapper.toStandardDto(standard);
     }
 }

@@ -60,12 +60,23 @@ public class SteelGradeServiceImpl implements SteelGradeService {
     }
 
     @Override
-    public void delete(SteelGrade steelGrade) {
-        steelGradeRepo.delete(steelGrade);
+    public void delete(SteelGradeDto steelGradeDto) {
+        steelGradeRepo.delete(steelGradeMapper.toSteelGrade(steelGradeDto));
     }
 
     @Override
     public boolean existsById(Long id) {
         return steelGradeRepo.existsById(id);
+    }
+
+    @Override
+    public SteelGradeDto updateSteelGrade(Long id, SteelGradeDto steelGradeDto) {
+        SteelGrade steelGradeNew = steelGradeMapper.toSteelGrade(steelGradeDto);
+        if(steelGradeRepo.findById(id).isEmpty()){
+            return null;
+        }
+        SteelGrade steelGrade = steelGradeRepo.findById(id).get();
+        steelGrade.setName(steelGradeNew.getName());
+        return steelGradeMapper.toSteelGradeDto(steelGrade);
     }
 }

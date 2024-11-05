@@ -2,6 +2,8 @@ package ru.boshchenko.rtz_app.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.boshchenko.rtz_app.dto.UserDto;
+import ru.boshchenko.rtz_app.mapper.UserMapper;
 import ru.boshchenko.rtz_app.model.User;
 import ru.boshchenko.rtz_app.repository.UserRepo;
 import ru.boshchenko.rtz_app.service.interfaces.UserService;
@@ -13,40 +15,46 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
+    private final UserMapper userMapper;
 
 
     @Override
-    public User save(User user) {
-        return userRepo.save(user);
+    public User save(UserDto userDto) {
+        return userRepo.save(userMapper.toUser(userDto));
+    }
+
+    @Override
+    public UserDto findByUserNameDto(String username) {
+        //TODO сделать исключение
+        return userMapper.toUserDto(userRepo.findByUserName(username).orElse(null));
     }
 
     @Override
     public User findByUserName(String username) {
-        //TODO сделать исключение
         return userRepo.findByUserName(username).orElse(null);
     }
 
     @Override
-    public User findByEmail(String email) {
+    public UserDto findByEmail(String email) {
         //TODO сделать исключение
-        return userRepo.findByEmail(email).orElse(null);
+        return userMapper.toUserDto(userRepo.findByEmail(email).orElse(null));
     }
 
     @Override
-    public User findByInn(Long inn) {
+    public UserDto findByInn(Long inn) {
         //TODO сделать исключение
-        return userRepo.findByInn(inn).orElse(null);
+        return userMapper.toUserDto(userRepo.findByInn(inn).orElse(null));
     }
 
     @Override
-    public User findById(Long id) {
+    public UserDto findById(Long id) {
         //TODO сделать исключение
-        return userRepo.findById(id).orElse(null);
+        return userMapper.toUserDto(userRepo.findById(id).orElse(null));
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepo.findAll();
+    public List<UserDto> findAll() {
+        return userRepo.findAll().stream().map(u -> userMapper.toUserDto(u)).toList();
     }
 
     @Override
@@ -59,12 +67,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) {
-        userRepo.delete(user);
+    public void delete(UserDto userDto) {
+        userRepo.delete(userMapper.toUser(userDto));
     }
 
     @Override
     public boolean existsById(Long id) {
         return userRepo.existsById(id);
     }
+
+    @Override
+    public UserDto updateUser(Long id, UserDto userDto) {
+        User userNew = userMapper.toUser(userDto);
+        if(userRepo.findById(id).isEmpty()){
+            return null;
+        }
+        User user = userRepo.findById(id).get();
+        user.setUserName(userNew.getUserName());
+        user.setFirstName(userNew.getFirstName());
+        user.setLastName(userNew.getLastName());
+        user.setPatronymic(userNew.getPatronymic());
+        user.setEmail(userNew.getEmail());
+        user.setPhone(userNew.getPhone());
+        user.setInn(userNew.getInn());
+        userRepo.save(user);
+        return userMapper.toUserDto(user);
+    }
+
+
 }

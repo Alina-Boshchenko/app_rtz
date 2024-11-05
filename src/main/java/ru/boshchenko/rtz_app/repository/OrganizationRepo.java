@@ -6,14 +6,6 @@ import ru.boshchenko.rtz_app.model.Organization;
 
 import java.util.Optional;
 
-/*
-
-* @Query для написания запросов и отборок
-
-**/
-
-
-
 
 @Repository
 public interface OrganizationRepo extends JpaRepository<Organization, Long> {

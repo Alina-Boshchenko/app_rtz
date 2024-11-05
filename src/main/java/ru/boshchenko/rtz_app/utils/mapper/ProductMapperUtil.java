@@ -22,8 +22,8 @@ public class ProductMapperUtil {
     private final StandardService standardService;
     private final SteelGradeService steelGradeService;
 
-    @Named("detRolledByName")
-    public Rolled detRolledByName(String name){
+    @Named("getRolledByName")
+    public Rolled getRolledByName(String name){
        return rolledService.findByNameRolled(name);
     }
 

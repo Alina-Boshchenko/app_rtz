@@ -21,9 +21,11 @@ public interface StandardService {
 
     boolean deleteById(Long id);
 
-    void delete(Standard standard);
+    void delete(StandardDto standardDto);
 
     boolean existsById(Long id);
+
+    StandardDto updateStandard(Long id, StandardDto standardDto);
 
 
 }

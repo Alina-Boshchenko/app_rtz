@@ -40,6 +40,28 @@ public class SteelGradeRestController {
         System.out.println("отработал стил грйед");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    //TODO посмотреть какой должен быть статус ответа
+    @PatchMapping("/{id}")
+    public ResponseEntity<SteelGradeDto> updateProduct(@PathVariable("id") Long id, @RequestBody SteelGradeDto steelGradeDto) {
+//        System.out.println(productDto);
+        if(steelGradeService.updateSteelGrade(id, steelGradeDto)==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        steelGradeService.updateSteelGrade(id, steelGradeDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
+        if (!steelGradeService.deleteById(id)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        steelGradeService.deleteById(id);
+        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+    }
+
+
+
 
 
 }

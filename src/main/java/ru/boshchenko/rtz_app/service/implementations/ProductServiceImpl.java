@@ -59,8 +59,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Product product) {
-        productRepo.delete(product);
+    public void delete(ProductDto productDto) {
+        productRepo.delete(productMapper.toProduct(productDto));
     }
 
     @Override

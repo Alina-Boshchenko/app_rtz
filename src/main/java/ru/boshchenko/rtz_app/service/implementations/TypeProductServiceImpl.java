@@ -17,7 +17,7 @@ import java.util.Optional;
 public class TypeProductServiceImpl implements TypeProductService {
 
     private final TypeProductRepo typeRepo;
-//    private final MappingUtilsTypeProduct mappingUtilsTypeProduct;
+    //    private final MappingUtilsTypeProduct mappingUtilsTypeProduct;
     private final TypeProductMapper typeProductMapper;
 
     @Override
@@ -29,7 +29,9 @@ public class TypeProductServiceImpl implements TypeProductService {
     public TypeProductDto findByName(String name) {
         Optional<TypeProduct> type = typeRepo.findByName(name);
         //TODO сделать исключение
-        if (type.isPresent()) {return typeProductMapper.toTypeProductDto(type.get());}
+        if (type.isPresent()) {
+            return typeProductMapper.toTypeProductDto(type.get());
+        }
         return null;
     }
 
@@ -42,7 +44,9 @@ public class TypeProductServiceImpl implements TypeProductService {
     public TypeProductDto findById(Long id) {
         Optional<TypeProduct> type = typeRepo.findById(id);
         //TODO сделать исключение
-        if (type.isPresent()) {return typeProductMapper.toTypeProductDto(type.get());}
+        if (type.isPresent()) {
+            return typeProductMapper.toTypeProductDto(type.get());
+        }
         return null;
     }
 
@@ -56,16 +60,30 @@ public class TypeProductServiceImpl implements TypeProductService {
         if (typeRepo.existsById(id)) {
             typeRepo.deleteById(id);
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override
-    public void delete(TypeProduct type) {
-typeRepo.delete(type);
+    public void delete(TypeProductDto typeProductDto) {
+        typeRepo.delete(typeProductMapper.toTypeProduct(typeProductDto));
     }
 
     @Override
     public boolean existsById(Long id) {
         return typeRepo.existsById(id);
+    }
+
+
+    @Override
+    public TypeProductDto updateTypeProduct(Long id, TypeProductDto typeProductDto) {
+        TypeProduct typeProductNew = typeProductMapper.toTypeProduct(typeProductDto);
+        if (typeRepo.findById(id).isEmpty()) {
+            return null;
+        }
+        TypeProduct typeProduct = typeRepo.findById(id).get();
+        typeProduct.setName(typeProductNew.getName());
+        typeRepo.save(typeProduct);
+        return typeProductMapper.toTypeProductDto(typeProduct);
     }
 }

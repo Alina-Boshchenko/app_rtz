@@ -13,7 +13,7 @@ imports = {ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil.class})
 public interface ProductMapper {
 
     @Mapping(target = "rolled",
-            qualifiedByName = {"ProductMapperUtil", "detRolledByName"},
+            qualifiedByName = {"ProductMapperUtil", "getRolledByName"},
     source = "rolledName")
     @Mapping(target = "type",
     qualifiedByName = {"ProductMapperUtil", "getTypeProductByName"},

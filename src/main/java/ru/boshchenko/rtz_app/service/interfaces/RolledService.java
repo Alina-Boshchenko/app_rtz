@@ -21,10 +21,10 @@ public interface RolledService {
 
     boolean deleteById(Long id);
 
-    void delete(Rolled rolled);
+    void delete(RolledDto rolledDto);
 
     boolean existsById(Long id);
 
-//    RolledDto update(RolledDto rolledDto);
+    RolledDto update(Long id, RolledDto rolledDto);
 
 }

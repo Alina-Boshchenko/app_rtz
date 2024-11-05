@@ -41,6 +41,25 @@ public class StandardRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    //TODO посмотреть какой должен быть статус ответа
+    @PatchMapping("/{id}")
+    public ResponseEntity<StandardDto> updateProduct(@PathVariable("id") Long id, @RequestBody StandardDto standardDto) {
+//        System.out.println(productDto);
+        if(standardService.updateStandard(id, standardDto)==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        standardService.updateStandard(id, standardDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
+        if (!standardService.deleteById(id)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        standardService.deleteById(id);
+        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+    }
 
 
 }

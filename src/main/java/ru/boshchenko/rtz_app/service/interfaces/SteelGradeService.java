@@ -21,8 +21,11 @@ public interface SteelGradeService {
 
     boolean deleteById(Long id);
 
-    void delete(SteelGrade steelGrade);
+    void delete(SteelGradeDto steelGradeDto);
 
     boolean existsById(Long id);
+
+
+    SteelGradeDto updateSteelGrade(Long id, SteelGradeDto steelGradeDto);
 
 }

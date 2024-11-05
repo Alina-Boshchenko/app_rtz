@@ -41,5 +41,22 @@ public class RolledRestController {
         System.out.println("отработал прокат");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @PatchMapping("/{id}")
+    public ResponseEntity<RolledDto> updateRolled(@PathVariable Long id, RolledDto rolledDto){
+        if (rolledService.update(id,rolledDto)==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        rolledService.update(id,rolledDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteRolled(@PathVariable Long id){
+        if (!rolledService.deleteById(id)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        rolledService.deleteById(id);
+        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+    }
 
 }

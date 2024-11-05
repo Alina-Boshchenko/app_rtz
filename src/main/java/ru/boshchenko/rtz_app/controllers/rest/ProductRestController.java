@@ -49,8 +49,20 @@ public class ProductRestController {
     //TODO посмотреть какой должен быть статус ответа
     @PatchMapping("/{id}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
-        System.out.println(productDto);
+//        System.out.println(productDto);
+        if(productService.updateById(id, productDto)==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         productService.updateById(id, productDto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
+        if (!productService.deleteById(id)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        productService.deleteById(id);
+        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
     }
 }

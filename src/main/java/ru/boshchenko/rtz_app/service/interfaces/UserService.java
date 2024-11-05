@@ -1,6 +1,7 @@
 package ru.boshchenko.rtz_app.service.interfaces;
 
 import org.springframework.stereotype.Service;
+import ru.boshchenko.rtz_app.dto.UserDto;
 import ru.boshchenko.rtz_app.model.User;
 
 import java.util.List;
@@ -8,25 +9,32 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    User save(User user);
+    User save(UserDto userDto);
+
+    UserDto findByUserNameDto(String username);
 
     User findByUserName(String username);
-    User findByEmail(String email);
+
+    UserDto findByEmail(String email);
 
     /**
      * @param inn - ИНН организации
      * @return сущность записи в БД
      */
-    User findByInn(Long inn);
+    UserDto findByInn(Long inn);
 
-    User findById(Long id);
+    UserDto findById(Long id);
 
-    List<User> findAll();
+    List<UserDto> findAll();
 
     boolean deleteById(Long id);
 
-    void delete(User user);
+    void delete(UserDto userDto);
 
     boolean existsById(Long id);
+
+    UserDto updateUser(Long id, UserDto userDto);
+
+
 
 }

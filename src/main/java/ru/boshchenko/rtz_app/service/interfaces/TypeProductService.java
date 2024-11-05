@@ -20,8 +20,9 @@ public interface TypeProductService {
 
     boolean deleteById(Long id);
 
-    void delete(TypeProduct type);
+    void delete(TypeProductDto typeProductDto);
 
     boolean existsById(Long id);
+    TypeProductDto updateTypeProduct(Long id, TypeProductDto typeProductDto);
 
 }

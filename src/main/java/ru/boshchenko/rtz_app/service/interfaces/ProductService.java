@@ -19,7 +19,8 @@ public interface ProductService {
 
     boolean deleteById(Long id);
 
-    void delete(Product product);
+
+    void delete(ProductDto productDto);
 
     boolean existsById(Long id);
 
