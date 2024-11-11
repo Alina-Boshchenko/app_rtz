@@ -11,16 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "types_product")
-public class TypeProduct {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length = 40, nullable = false)
+public class TypeProduct extends BaseEntity {
+
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
+
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     private List<Product> products;
 
-    public TypeProduct(String name) {
-        this.name = name;
-    }
 }

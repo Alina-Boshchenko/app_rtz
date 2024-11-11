@@ -11,9 +11,9 @@ public interface UserService {
 
     User save(UserDto userDto);
 
-    UserDto findByUserNameDto(String username);
+    UserDto findByUsernameDto(String username);
 
-    User findByUserName(String username);
+    User findByUsername(String username);
 
     UserDto findByEmail(String email);
 

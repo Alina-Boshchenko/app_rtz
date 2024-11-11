@@ -7,7 +7,6 @@ import ru.boshchenko.rtz_app.repository.SteelGradeRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.service.interfaces.SteelGradeService;
-import ru.boshchenko.rtz_app.utils.MappingUtilsSteelGrade;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class SteelGradeServiceImpl implements SteelGradeService {
 
     private final SteelGradeRepo steelGradeRepo;
-//    private final MappingUtilsSteelGrade mappingUtilsSteelGrade;
     private final SteelGradeMapper steelGradeMapper;
 
     @Override

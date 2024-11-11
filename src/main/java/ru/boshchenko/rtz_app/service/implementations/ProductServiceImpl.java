@@ -5,7 +5,6 @@ import ru.boshchenko.rtz_app.mapper.ProductMapper;
 import ru.boshchenko.rtz_app.model.Product;
 import ru.boshchenko.rtz_app.repository.ProductRepo;
 import ru.boshchenko.rtz_app.service.interfaces.ProductService;
-import ru.boshchenko.rtz_app.utils.MappingUtilsProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepo productRepo;
-//    private final MappingUtilsProduct mappingUtilsProduct;
     private final ProductMapper productMapper;
 
     @Override

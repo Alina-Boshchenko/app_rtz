@@ -4,19 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder(access = AccessLevel.PUBLIC)
+@Builder(access = AccessLevel.PUBLIC)
 @Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Product extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "rolled_id")
@@ -26,8 +19,7 @@ public class Product {
     @JoinColumn(name = "type_id")
     private TypeProduct type;
 
-
-    @Column(length = 40, nullable = false)
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
 
     @ManyToOne
@@ -38,31 +30,22 @@ public class Product {
     @JoinColumn(name = "steelGrade_id")
     private SteelGrade steelGrade;
 
-    @Column(length = 40)
+    @Column(name = "size", length = 40)
     private String size;
 
-    @Column
+    @Column(name = "length")
     private Double length;
-    @Column
+
+    @Column(name = "thickness")
     private Double thickness;
-    @Column
+
+    @Column(name = "weight")
     private Double weight;
+
     @Column(nullable = false, name = "price_per_meter")
     private Double pricePerMeter;
+
     @Column(nullable = false, name = "price_per_ton")
     private Double pricePerTon;
 
-    public Product(Rolled rolled, TypeProduct type, String name, Standard standard, SteelGrade steelGrade, String size, Double length, Double thickness, Double weight, Double pricePerMeter, Double pricePerTon) {
-        this.rolled = rolled;
-        this.type = type;
-        this.name = name;
-        this.standard = standard;
-        this.steelGrade = steelGrade;
-        this.size = size;
-        this.length = length;
-        this.thickness = thickness;
-        this.weight = weight;
-        this.pricePerMeter = pricePerMeter;
-        this.pricePerTon = pricePerTon;
-    }
 }

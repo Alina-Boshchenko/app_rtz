@@ -11,16 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "steel_grades")
-public class SteelGrade {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length = 40, nullable = false)
+public class SteelGrade extends BaseEntity {
+
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
+
     @OneToMany(mappedBy = "steelGrade", cascade = CascadeType.ALL)
     private List<Product> products;
 
-    public SteelGrade(String name) {
-        this.name = name;
-    }
 }

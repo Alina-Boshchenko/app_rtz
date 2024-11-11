@@ -12,23 +12,16 @@ import java.util.List;
  * @EqualsAndHashCode, @Getter / @Setter и @RequiredArgsConstructor вместе
  * */
 @Data
-@Builder(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(access = AccessLevel.PUBLIC)
 @Table(name = "rolleds")
-public class Rolled {
+public class Rolled extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(length = 40, nullable = false)
+    @Column(name = "name", length = 40, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "rolled", cascade = CascadeType.ALL)
     private List<Product> products;
 
-    public Rolled(String name) {
-        this.name = name;
-    }
 }

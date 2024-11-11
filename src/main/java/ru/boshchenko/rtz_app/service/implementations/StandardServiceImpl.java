@@ -7,7 +7,6 @@ import ru.boshchenko.rtz_app.repository.StandardRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.service.interfaces.StandardService;
-import ru.boshchenko.rtz_app.utils.MappingUtilsStandard;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class StandardServiceImpl implements StandardService {
 
     private final StandardRepo standardRepo;
-//    private final MappingUtilsStandard mappingUtilsStandard;
     private final StandardMapper standardMapper;
 
 

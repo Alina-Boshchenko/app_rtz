@@ -8,8 +8,6 @@ import ru.boshchenko.rtz_app.model.Organization;
 import ru.boshchenko.rtz_app.service.interfaces.OrganizationService;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Named("UserMapperUtil")
 @Component
@@ -20,12 +18,12 @@ public class UserMapperUtil {
 
     @Named("getOrganizationsName")
     public Collection<String> getOrganizationsName(Collection<Organization> organizations){
-        return organizations.stream().map(o -> o.getName()).toList();
+        return organizations.stream().map(Organization::getName).toList();
     }
 
     @Named("getOrganizations")
     public Collection<Organization> getOrganizations(Collection<String> organizationsName){
-        return organizationsName.stream().map(o -> organizationService.findByName(o)).toList();
+        return organizationsName.stream().map(organizationService::findByName).toList();
     }
 
 

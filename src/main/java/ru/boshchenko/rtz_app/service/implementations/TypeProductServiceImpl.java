@@ -7,7 +7,6 @@ import ru.boshchenko.rtz_app.repository.TypeProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.service.interfaces.TypeProductService;
-import ru.boshchenko.rtz_app.utils.MappingUtilsTypeProduct;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class TypeProductServiceImpl implements TypeProductService {
 
     private final TypeProductRepo typeRepo;
-    //    private final MappingUtilsTypeProduct mappingUtilsTypeProduct;
     private final TypeProductMapper typeProductMapper;
 
     @Override

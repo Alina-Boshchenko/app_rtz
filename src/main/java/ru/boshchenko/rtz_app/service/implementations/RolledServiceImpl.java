@@ -7,7 +7,6 @@ import ru.boshchenko.rtz_app.repository.RolledRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.service.interfaces.RolledService;
-import ru.boshchenko.rtz_app.utils.MappingUtilsRolled;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class RolledServiceImpl implements RolledService {
 
     private final RolledRepo rolledRepo;
-//    private final MappingUtilsRolled mappingUtilsRolled;
     private final RolledMapper rolledMapper;
 
     

@@ -11,39 +11,36 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity {
 
-//сделать почту также и логином ?
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_name", unique = true, nullable = false)
+    private String username;
 
-    @Column(unique = true, nullable = false, name = "user_name")
-    private String userName;
-
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(length = 30, name = "first_name")
+    @Column(length = 100, name = "first_name")
     private String firstName;
-    @Column(length = 40, name = "last_name")
+
+    @Column(length = 100, name = "last_name")
     private String lastName;
-    @Column(length = 40)
+
+    @Column(name = "patronymic")
     private String patronymic;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
-    @Column(unique = true)
+    @Column(name = "inn", unique = true)
     private Long inn;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Collection<Organization> organizations;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -51,14 +48,4 @@ public class User {
     )
     private Collection<Role> roles;
 
-
-    public User(String userName, String password, String firstName, String lastName, String patronymic, String email, String phone) {
-        this.userName = userName;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patronymic = patronymic;
-        this.email = email;
-        this.phone = phone;
-    }
 }
