@@ -34,8 +34,9 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        System.out.println("дергнул метод");
         userService.save(userDto);
         System.out.println(userDto.toString());
         System.out.println("user сохранен");

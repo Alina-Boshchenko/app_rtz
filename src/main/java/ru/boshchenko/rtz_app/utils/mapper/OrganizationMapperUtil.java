@@ -23,11 +23,17 @@ public class OrganizationMapperUtil {
 
     @Named("getUsersName")
     public Collection<String> getUsersName(Collection<User> users){
+        if (users == null){
+            return null;
+        }
         return users.stream().map(User::getUsername).toList();
     }
 
     @Named("getUsers")
     public Collection<User> getUsers(Collection<String> usersName){
+        if (usersName == null){
+            return null;
+        }
         return usersName.stream().map(userService::findByUsername).toList();
     }
 }

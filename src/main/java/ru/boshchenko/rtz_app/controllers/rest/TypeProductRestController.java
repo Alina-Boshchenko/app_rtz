@@ -34,7 +34,7 @@ public class TypeProductRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<TypeProductDto> createTypeProduct(@RequestBody TypeProductDto typeProductDto) {
         typeProductService.save(typeProductDto);
         System.out.println("отработал тип");

@@ -17,7 +17,7 @@ function toggleForm() {
   }
 }
 
-//TODO api адрес на создание юзера
+//TODO api адрес на апдейт юзера
 async function fetchData() {
   try {
     const response = await fetch("http://localhost:8080/");
@@ -31,7 +31,6 @@ async function fetchData() {
       "Error: " + error.message;
   }
 }
-// Функция для отображения данных в поле
 function displayData(data) {
   const dataLogin = document.getElementById("dataLogin");
   dataLogin.textContent = JSON.stringify(data, null, 2);
@@ -48,7 +47,7 @@ document
 //TODO
 async function fetchData() {
   try {
-    const response = await fetch("https:........."); // Замените URL на ваш
+    const response = await fetch("https:.........");
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
@@ -60,19 +59,17 @@ async function fetchData() {
   }
 }
 
-// Функция для отображения данных в поле
 function displayData(data) {
   const dataPhone = document.getElementById("dataPhone");
-  dataPhone.textContent = JSON.stringify(data, null, 2); // Форматируем JSON с отступами
+  dataPhone.textContent = JSON.stringify(data, null, 2);
 }
 
-// Вызов функции для получения данных при загрузке страницы
 window.onload = fetchData;
 
 //TODO Функция для получения данных с сервера почта
 async function fetchData() {
   try {
-    const response = await fetch("https:........."); // Замените URL на ваш
+    const response = await fetch("https:.........");
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
@@ -84,24 +81,16 @@ async function fetchData() {
   }
 }
 
-// Функция для отображения данных в поле
 function displayData(data) {
   const dataEmail = document.getElementById("dataEmail");
-  dataEmail.textContent = JSON.stringify(data, null, 2); // Форматируем JSON с отступами
+  dataEmail.textContent = JSON.stringify(data, null, 2);
 }
 
-// Вызов функции для получения данных при загрузке страницы
 window.onload = fetchData;
-
-
-
-
-// Функция отправки данных анкеты на сервер
 
 document
   .getElementById("saveButtonPerson")
   .addEventListener("click", function () {
-    // Собираем данные из формы
 
     //TODO Добавить картинку
 
@@ -111,21 +100,16 @@ document
       patronymic: document.getElementById("patronymic").value,
     };
 
-    // Создаем объект для отправки на сервер
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://server...", true); // тут свой сервак
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-    // Отправляем JSON на сервер
     xhr.send(JSON.stringify(formData));
 
-    // Обработка ответа сервера
     xhr.onload = function () {
       if (xhr.status === 200) {
-        // Успешное сохранение данных
         alert("Данные успешно сохранены!");
       } else {
-        // Обработка ошибок
         alert("Произошла ошибка при сохранении данных: " + xhr.statusText);
       }
     };
@@ -134,7 +118,6 @@ document
 
 
 document.getElementById("saveButton").addEventListener("click", function () {
-   // Собираем данные из формы
 
     //TODO Добавить картинку
   var formData = {
@@ -150,21 +133,16 @@ document.getElementById("saveButton").addEventListener("click", function () {
     patronymic: document.getElementById("patronymic").value
   };
 
-  // Создаем объект для отправки на сервер
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://server...", true); // тут свой сервак
+  xhr.open("POST", "https://server...", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  // Отправляем JSON на сервер
   xhr.send(JSON.stringify(formData));
 
-  // Обработка ответа сервера
   xhr.onload = function () {
     if (xhr.status === 200) {
-      // Успешное сохранение данных
       alert("Данные успешно сохранены!");
     } else {
-      // Обработка ошибок
       alert("Произошла ошибка при сохранении данных: " + xhr.statusText);
     }
   };

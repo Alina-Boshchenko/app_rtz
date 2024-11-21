@@ -34,7 +34,7 @@ public class SteelGradeRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<SteelGradeDto> createSteelGrade(@RequestBody SteelGradeDto steelGradeDto) {
         steelGradeService.save(steelGradeDto);
         System.out.println("отработал стил грйед");

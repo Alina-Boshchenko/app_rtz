@@ -1,4 +1,4 @@
-// Допустим, у нас есть функция для получения списка выбранных товаров
+
 function getSelectedProducts() {
   // Здесь должен быть код для получения выбранных товаров, например, из localStorage или API
   return [
@@ -8,7 +8,7 @@ function getSelectedProducts() {
   ];
 }
 
-// Функция для отображения списка выбранных товаров
+
 function displaySelectedProducts() {
   const products = getSelectedProducts();
   const container = document.getElementById('selected-products');
@@ -20,7 +20,7 @@ function displaySelectedProducts() {
   });
 }
 
-// Обработчики событий для кнопок
+
 document.getElementById('invoice-payment').addEventListener('click', function() {
   console.log('Выбрана оплата по счету');
   // Здесь код для обработки оплаты по счету

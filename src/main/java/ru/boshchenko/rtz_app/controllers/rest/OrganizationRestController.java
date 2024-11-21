@@ -35,7 +35,7 @@ public class OrganizationRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<ProductDto> createOrganization(@RequestBody OrganizationDto organizationDto) {
         organizationService.save(organizationDto);
         System.out.println(organizationDto.toString());

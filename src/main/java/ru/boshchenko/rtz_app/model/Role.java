@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,4 +20,7 @@ public class Role extends BaseEntity {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Collection<User> users;
 
+    public Role(String name) {
+        this.name = name;
+    }
 }

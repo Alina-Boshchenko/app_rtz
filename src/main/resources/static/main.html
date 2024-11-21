@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Мета-теги для CSRF-защиты -->
+    <meta name="_csrf" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
     <title>РТЗ главная</title>
     <link rel="stylesheet" href="/css/main_style.css" />
     <link
@@ -36,32 +39,32 @@
                   <h2 class="h2-close">Вход в личный кабинет</h2>
                   <span class="close">&times;</span>
                 </div>
+
                 <form>
                   <label for="username">Логин:</label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                  /><br /><br />
+                  <input type="text" id="username" name="username"/><br /><br />
+
                   <label for="password">Пароль:</label>
                   <input type="password" id="password" name="password" />
+
                   <div class="form-input">
                     <div>
-                      <input type="checkbox" id="showPassword" /> Показать
-                      пароль<br /><br />
+                      <input type="checkbox" id="showPassword" />Показать пароль<br /><br />
                     </div>
                     <div>
-                      <input type="checkbox" id="rememberMe" />
-                      Запомнить<br /><br />
+                      <input type="checkbox" id="rememberMe" />Запомнить<br /><br />
                     </div>
                   </div>
                   <a href="#" id="forgotPassword">Забыли логин или пароль?</a
                   ><br /><br />
                   <div class="submit-button">
+
                     <button type="submit" id="loginBtn">Войти</button>
-                    <button type="button" id="registerBtn">
-                      Зарегистрироваться
-                    </button>
+
+                    <a href="registration.html"><button class="auth-button">Регистрация</button></a>
+<!--                    <button type="button" id="registerBtn">-->
+<!--                      Зарегистрироваться-->
+<!--                    </button>-->
                   </div>
                 </form>
               </div>

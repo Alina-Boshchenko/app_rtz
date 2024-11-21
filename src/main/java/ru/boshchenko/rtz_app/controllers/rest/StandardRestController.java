@@ -34,7 +34,7 @@ public class StandardRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<StandardDto> createStandard(@RequestBody StandardDto standardDto) {
         standardService.save(standardDto);
         System.out.println("отработал стандарт");

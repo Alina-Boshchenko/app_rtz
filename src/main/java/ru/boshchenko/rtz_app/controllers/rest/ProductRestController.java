@@ -38,7 +38,7 @@ public class ProductRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
         productService.save(productDto);
         System.out.println(productDto.toString());
@@ -59,7 +59,7 @@ public class ProductRestController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id){
-        if (!productService.deleteById(id)){
+        if (!productService.existsById(id)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.deleteById(id);

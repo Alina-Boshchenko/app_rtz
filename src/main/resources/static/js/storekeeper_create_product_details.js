@@ -1,10 +1,8 @@
 document.getElementById('productForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Получаем значение названия товара
     var name = document.getElementById('name').value.trim();
 
-    // Получаем выбранную радио-кнопку
     var selectedCategory = document.querySelector('input[name="category"]:checked');
 
     if (!name) {
@@ -17,33 +15,30 @@ document.getElementById('productForm').addEventListener('submit', function(event
         return;
     }
 
-    // Определяем URL в зависимости от выбранной категории
     var url;
 
     switch(selectedCategory.id) {
         case 'rolledName':
-            url = 'http://localhost:8080/api/rolled/creat'; // Замените на актуальный адрес для категории "Прокат"
+            url = 'http://localhost:8080/api/rolled/create';
             break;
         case 'typeName':
-            url = 'http://localhost:8080/api/typeproduct/creat'; // Замените на актуальный адрес для категории "Тип товара"
+            url = 'http://localhost:8080/api/typeproduct/create';
             break;
         case 'standardName':
-            url = 'http://localhost:8080/api/standard/creat'; // Замените на актуальный адрес для категории "Стандарт"
+            url = 'http://localhost:8080/api/standard/create';
             break;
         case 'steelGradeName':
-            url = 'http://localhost:8080/api/steelgrade/creat'; // Замените на актуальный адрес для категории "Марка Стали"
+            url = 'http://localhost:8080/api/steelgrade/create';
             break;
         default:
             alert('Неизвестная категория');
             return;
     }
 
-    // Формируем JSON-данные
     var data = {
         name: name
     };
 
-    // Отправляем POST-запрос
     fetch(url, {
         method: 'POST',
         headers: {
@@ -55,7 +50,6 @@ document.getElementById('productForm').addEventListener('submit', function(event
             if (!response.ok) {
                 throw new Error('Ошибка сети');
             }
-            // Проверяем, есть ли тело ответа
             return response.text().then(function(text) {
                 if (text) {
                     try {
@@ -70,7 +64,6 @@ document.getElementById('productForm').addEventListener('submit', function(event
             });
         })
         .then(function(data) {
-            // Очищаем поля формы
             document.getElementById('productForm').reset();
             alert('Товар сохранен');
         })

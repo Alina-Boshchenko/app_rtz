@@ -8,7 +8,6 @@
 
 const productId = 1;
 
-// Функция для запроса данных товара с сервера
 async function fetchProductData() {
     try {
         const response = await fetch(`/api/product/${productId}`);
@@ -17,7 +16,6 @@ async function fetchProductData() {
         }
         const productData = await response.json();
 
-        // Заполняем элементы данными
         const fields = ['rolledName', 'typeName', 'name', 'standardName', 'steelGradeName', 'size', 'length', 'thickness', 'weight', 'pricePerMeter', 'pricePerTon'];
 
         fields.forEach(field => {
@@ -28,24 +26,20 @@ async function fetchProductData() {
         });
     } catch (error) {
         console.error('Ошибка при получении данных товара:', error);
-        // Обработка ошибки, например, вывод сообщения пользователю
     }
 }
 
-// Вызываем функцию запроса данных
 fetchProductData();
 
-// Обработчик для кнопки "Изменить"
 document.getElementById('editButton').addEventListener('click', handleEditButtonClick);
 
 function handleEditButtonClick() {
-    // Меняем текст кнопки на "Сохранить"
+
     const editButton = document.getElementById('editButton');
     editButton.textContent = 'Сохранить';
     editButton.removeEventListener('click', handleEditButtonClick);
     editButton.addEventListener('click', handleSaveButtonClick);
 
-    // Заменяем значения на поля ввода
     const fields = ['rolledName', 'typeName', 'name', 'standardName', 'steelGradeName', 'size', 'length', 'thickness', 'weight', 'pricePerMeter', 'pricePerTon'];
 
     fields.forEach(field => {
@@ -55,17 +49,16 @@ function handleEditButtonClick() {
         // Создаем поле ввода
         const input = document.createElement('input');
         input.type = 'text';
-        input.className = 'form-control'; // Добавляем класс Bootstrap для стилизации
+        input.className = 'form-control';
         input.id = field;
         input.value = value ? value : '';
 
-        // Заменяем элемент на поле ввода
         element.parentNode.replaceChild(input, element);
     });
 }
 
 function handleSaveButtonClick() {
-    // Собираем данные из полей ввода
+
     const fields = ['rolledName', 'typeName', 'name', 'standardName', 'steelGradeName', 'size', 'length', 'thickness', 'weight', 'pricePerMeter', 'pricePerTon'];
 
     const data = {};
@@ -74,11 +67,9 @@ function handleSaveButtonClick() {
         data[field] = input.value;
     });
 
-    // Отправляем PATCH-запрос на сервер
      patchProductData(data);
 }
 
-// Функция для отправки PATCH-запроса
 async function patchProductData(data) {
     try {
         const response = await fetch(`/api/product/${productId}`, {
@@ -91,10 +82,7 @@ async function patchProductData(data) {
         if (!response.ok) {
             throw new Error('Ошибка сети');
         }
-        // Уведомляем об успешном изменении и предлагаем перезагрузить страницу
         alert('Изменения успешно сохранены. Пожалуйста, перезагрузите страницу.');
-
-        // Можно перезагрузить страницу автоматически
         location.reload();
 
     } catch (error) {

@@ -3,6 +3,8 @@ package ru.boshchenko.rtz_app.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -47,5 +49,10 @@ public class Product extends BaseEntity {
 
     @Column(nullable = false, name = "price_per_ton")
     private Double pricePerTon;
+
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    private Collection<Order> orders;
+
+
 
 }

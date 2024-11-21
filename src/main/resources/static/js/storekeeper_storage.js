@@ -1,4 +1,3 @@
-
 async function getDataFromServer (url) {
     let products;
     await fetch(url)
@@ -31,11 +30,11 @@ const totalPages = Math.ceil(products.length / productsPerPage);
 
 async function renderProducts(page) {
     products = await getDataFromServer('http://localhost:8080/api/product/all')
-// console.log(products);
+
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
     const productsToShow = products.slice(startIndex, endIndex);
-    // console.log(productsToShow);
+
 
     let productListHtml = `<table><tr><th>Наименование</th><th>Цена за тонну</th><th>Масса</th><th>Действие</th></tr>`;
 
@@ -68,9 +67,6 @@ function changeMass(index, delta) {
 function deleteForIndex(index) {
 
 console.log(index.name)
-
-
-
     // TODO delete отправить на сервак
     alert(`Товар удален!`);
 }

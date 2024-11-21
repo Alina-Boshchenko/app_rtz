@@ -35,7 +35,7 @@ public class RolledRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public ResponseEntity<RolledDto> createRolled(@RequestBody RolledDto rolledDto) {
         rolledService.save(rolledDto);
         System.out.println("отработал прокат");

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Data
@@ -46,6 +47,10 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Collection<Role> roles;
+    private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Order> orders;
+
 
 }

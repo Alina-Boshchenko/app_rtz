@@ -18,11 +18,17 @@ public class UserMapperUtil {
 
     @Named("getOrganizationsName")
     public Collection<String> getOrganizationsName(Collection<Organization> organizations){
+        if(organizations == null){
+            return null;
+        }
         return organizations.stream().map(Organization::getName).toList();
     }
 
     @Named("getOrganizations")
     public Collection<Organization> getOrganizations(Collection<String> organizationsName){
+        if(organizationsName == null){
+            return null;
+        }
         return organizationsName.stream().map(organizationService::findByName).toList();
     }
 

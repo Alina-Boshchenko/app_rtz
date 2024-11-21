@@ -1,22 +1,19 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.dto.UserDto;
 import ru.boshchenko.rtz_app.mapper.UserMapper;
+import ru.boshchenko.rtz_app.model.Role;
 import ru.boshchenko.rtz_app.model.User;
+import ru.boshchenko.rtz_app.repository.RoleRepo;
 import ru.boshchenko.rtz_app.repository.UserRepo;
 import ru.boshchenko.rtz_app.service.interfaces.UserService;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.*;
 
 @Service
 @Slf4j
@@ -25,13 +22,23 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserRepo userRepo;
+    private final RoleRepo roleRepo;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
     public User save(UserDto userDto) {
-        return userRepo.save(userMapper.toUser(userDto));
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        User user = userMapper.toUser(userDto);
+        Role role = new Role("ROLE_USER");
+        roleRepo.save(role);
+        user.setRoles(Set.of(role));
+        return userRepo.save(user);
     }
+
+
+
 
     @Override
     public UserDto findByUsernameDto(String username) {
@@ -45,20 +52,6 @@ public class UserServiceImpl implements UserService {
                 String.format("Пользователь %s не найден", username)
         ));
     }
-
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = findByUserName(username);
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getUserName(),
-//                user.getPassword(),
-//                user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
-//                        .collect(Collectors.toList())
-//        );
-//    }
-
-
     @Override
     public UserDto findByEmail(String email) {
         //TODO сделать исключение

@@ -1,4 +1,4 @@
-//логика для пролистывания фонов
+
 var slides = document.querySelectorAll(".slide");
 var currentSlide = 0;
 var slideInterval = setInterval(nextSlide, 5000);
@@ -67,6 +67,7 @@ function resetInterval() {
     }, 10000);
   }
 }
+
 //логика для модального окна
 document.addEventListener("DOMContentLoaded", (event) => {
   const modal = document.getElementById("myModal");
@@ -74,6 +75,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const span = document.getElementsByClassName("close")[0];
   const showPasswordCheckbox = document.getElementById("showPassword");
   const passwordInput = document.getElementById("password");
+  const usernameInput = document.getElementById("username");
+
 
   btn.onclick = function () {
     modal.style.display = "block";
@@ -96,67 +99,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
       passwordInput.type = "password";
     }
   });
+
+  const form = document.querySelector('form');
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    /** это для security нужно */
+    var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    // Преобразуем данные в формат URL-кодированной строки
+    const encodedData = new URLSearchParams(data).toString();
+
+
+    /** тут запрос по стандарту Spring security*/
+    fetch('http://localhost:8080/login', {
+      method: 'POST',
+      body: encodedData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // [csrfHeader]: csrfToken     /** тут выходила ошибка, т.к. в заголовке должна быть только строка, а не объект */
+      },
+      credentials: 'same-origin' /** сохран сессии */
+    })
+        .then(response => {
+          if (response.ok) {
+            window.location.reload();
+          } else {
+            alert('Ошибка входа')
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка во время входа:', error);
+        });
+  });
+
+
+
 });
 
-
-/*отправка гет-запроса с кнопки "регистрация"
-используется нативный JavaScript для создания GET-запроса с помощью объекта `XMLHttpRequest`.
-*/
-//
-// document.addEventListener('DOMContentLoaded', function() {
-//   var registrationButton = document.getElementById('registration');
-//
-//   registrationButton.addEventListener('click', function() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.open('GET', 'http://localhost:8080/registration', true);
-//
-//     xhr.onload = function () {
-//       if (xhr.status >= 200 && xhr.status < 300) {
-//         // Заменяем содержимое текущего документа на полученный HTML
-//         document.open();
-//         document.write(xhr.responseText);
-//         document.close();
-//       } else {
-//         console.error('The request failed!');
-//       }
-//     };
-//
-//     xhr.onerror = function () {
-//       console.error('The request failed!');
-//     };
-//
-//     xhr.send();
-//   });
-// });
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   // Получаем кнопку по её ID
-//   var registrationButton = document.getElementById('registration');
-//
-//   // Добавляем обработчик события клика на кнопку
-//   registrationButton.addEventListener('click', function() {
-//     // Выполняем GET-запрос на сервер
-//     fetch('http://localhost:8080/registration', {
-//       method: 'GET'
-//     })
-//         .then(response => {
-//           // Проверяем, что ответ успешен (статус 200 OK)
-//           if (response.ok) {
-//             // Возвращаем текст ответа (предполагается, что сервер возвращает HTML)
-//             return response.text();
-//           } else {
-//             // Если сервер вернул ошибку, выводим её в консоль
-//             throw new Error('Network response was not ok.');
-//           }
-//         })
-//         .then(html => {
-//           // Заменяем текущее содержимое body на HTML, полученный от сервера
-//           document.body.innerHTML = html;
-//         })
-//         .catch(error => {
-//           // В случае ошибки выводим информацию в консоль
-//           console.error('There has been a problem with your fetch operation:', error);
-//         });
-//   });
-// });

@@ -69,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 alert('Изменения успешно сохранены. Пожалуйста, перезагрузите страницу.');
 
-                // Скрываем поля ввода и кнопку "Сохранить"
+
                 document.getElementById('editFields').style.display = 'none';
-                // Показываем кнопку "Изменить"
+
                 document.getElementById('editButton').style.display = 'block';
-                // Обновляем отображаемые значения цен
+
                 document.getElementById('pricePerTon').textContent = productData.pricePerTon;
                 document.getElementById('pricePerMeter').textContent = productData.pricePerMeter;
             } else {
