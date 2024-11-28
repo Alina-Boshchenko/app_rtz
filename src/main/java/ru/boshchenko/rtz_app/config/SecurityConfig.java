@@ -40,6 +40,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/", "main.html",
                                 "registration.html", "/api/user/create", "in_development.html",
                                 "/css/**", "/js/**", "/imeg/**").permitAll()
+                        .requestMatchers("/client/**").hasRole("USER")
+                        .requestMatchers("/manager/**").hasRole("MANAGER")
+                        .requestMatchers("/storekeeper/**").hasRole("STOREKEEPER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.loginProcessingUrl("/login").permitAll()

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.dto.UserDto;
 import ru.boshchenko.rtz_app.mapper.UserMapper;
@@ -48,9 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(
-                String.format("Пользователь %s не найден", username)
-        ));
+        return userRepo.findByUsername(username).orElse(null);
     }
     @Override
     public UserDto findByEmail(String email) {

@@ -24,7 +24,7 @@ public class Order extends BaseEntity {
     private boolean needInvoice;
 
     @Column(name = "amount")
-    private Integer amount;
+    private Double amount;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

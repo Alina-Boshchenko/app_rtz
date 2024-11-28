@@ -29,7 +29,7 @@ public class Product extends BaseEntity {
     private Standard standard;
 
     @ManyToOne
-    @JoinColumn(name = "steelGrade_id")
+    @JoinColumn(name = "steel_grade_id")
     private SteelGrade steelGrade;
 
     @Column(name = "size", length = 40)

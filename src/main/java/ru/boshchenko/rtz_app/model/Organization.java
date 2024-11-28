@@ -17,10 +17,10 @@ import java.util.Collection;
 @Table(name = "organizations")
 public class Organization extends BaseEntity{
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(length = 60, name = "legal_address")
+    @Column(length = 100, name = "legal_address")
     private String legalAddress;
 
     @Column(name = "ogrn")

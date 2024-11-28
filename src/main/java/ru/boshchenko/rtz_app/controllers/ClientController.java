@@ -18,7 +18,7 @@ public class ClientController {
         return "client_chat.html";
     }
 
-    @GetMapping("/main")
+    @GetMapping
     public String clientMainPage(){
         return "client_main.html";
     }

@@ -8,16 +8,16 @@ import ru.boshchenko.rtz_app.model.Product;
 import ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-uses = {ProductMapperUtil.class},
-imports = {ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil.class})
+        uses = {ProductMapperUtil.class},
+        imports = {ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil.class})
 public interface ProductMapper {
 
     @Mapping(target = "rolled",
             qualifiedByName = {"ProductMapperUtil", "getRolledByName"},
-    source = "rolledName")
+            source = "rolledName")
     @Mapping(target = "type",
-    qualifiedByName = {"ProductMapperUtil", "getTypeProductByName"},
-    source = "typeName")
+            qualifiedByName = {"ProductMapperUtil", "getTypeProductByName"},
+            source = "typeName")
     @Mapping(target = "standard",
             qualifiedByName = {"ProductMapperUtil", "getStandardByName"},
             source = "standardName")
@@ -28,17 +28,17 @@ public interface ProductMapper {
 
 
     @Mapping(target = "rolledName",
-    qualifiedByName = {"ProductMapperUtil", "getNameRolled"},
-    source = "rolled")
+            qualifiedByName = {"ProductMapperUtil", "getNameRolled"},
+            source = "rolled")
     @Mapping(target = "typeName",
-    qualifiedByName = {"ProductMapperUtil", "getNameTypeProduct"},
-    source = "type")
+            qualifiedByName = {"ProductMapperUtil", "getNameTypeProduct"},
+            source = "type")
     @Mapping(target = "standardName",
-    qualifiedByName = {"ProductMapperUtil", "getNameStandard"},
-    source = "standard")
+            qualifiedByName = {"ProductMapperUtil", "getNameStandard"},
+            source = "standard")
     @Mapping(target = "steelGradeName",
-    qualifiedByName = {"ProductMapperUtil", "getNameSteelGrade"},
-    source = "steelGrade")
+            qualifiedByName = {"ProductMapperUtil", "getNameSteelGrade"},
+            source = "steelGrade")
     ProductDto toProductDto(Product product);
 
 

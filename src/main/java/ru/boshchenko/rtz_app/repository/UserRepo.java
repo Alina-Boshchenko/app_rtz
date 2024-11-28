@@ -13,8 +13,4 @@ public interface UserRepo extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     Optional<User> findByInn(Long inn);
 
-    //    @Query(nativeQuery = true, "SELECT lastName, patronymic " +
-//            "FROM users")
-
-
 }
