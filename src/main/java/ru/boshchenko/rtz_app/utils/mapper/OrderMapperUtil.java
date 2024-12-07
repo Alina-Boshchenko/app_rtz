@@ -20,7 +20,7 @@ public class OrderMapperUtil {
 
     @Named("getIdProducts")
     public Collection<Long> getIdProducts(Collection<Product> products) {
-        if(products == null){
+        if (products == null) {
             return null;
         }
         return products.stream().map(Product::getId).toList();
@@ -28,22 +28,23 @@ public class OrderMapperUtil {
 
     @Named("getProducts")
     public Collection<Product> getProducts(Collection<Long> ids) {
-        if(ids == null){
+        if (ids == null) {
             return null;
         }
         return ids.stream().map(id -> productRepo.findById(id).orElse(null)).toList();
     }
 
     @Named("getUserId")
-    public Long getUserId(User user){
-        if(user == null){
+    public Long getUserId(User user) {
+        if (user == null) {
             return null;
         }
         return user.getId();
     }
+
     @Named("getUser")
-    public User getUser(Long userId){
-        if(userId == null){
+    public User getUser(Long userId) {
+        if (userId == null) {
             return null;
         }
         return userRepo.findById(userId).orElse(null);

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Data
@@ -23,4 +22,5 @@ public class Role extends BaseEntity {
     public Role(String name) {
         this.name = name;
     }
+
 }

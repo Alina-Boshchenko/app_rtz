@@ -12,6 +12,7 @@ public interface TypeProductService {
     TypeProduct save(TypeProductDto typeProductDto);
 
     TypeProductDto findByName(String name);
+
     TypeProduct findByNameTypeProduct(String name);
 
     TypeProductDto findById(Long id);
@@ -23,6 +24,7 @@ public interface TypeProductService {
     void delete(TypeProductDto typeProductDto);
 
     boolean existsById(Long id);
+
     TypeProductDto updateTypeProduct(Long id, TypeProductDto typeProductDto);
 
 }

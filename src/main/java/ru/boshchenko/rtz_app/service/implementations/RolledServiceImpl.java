@@ -18,7 +18,7 @@ public class RolledServiceImpl implements RolledService {
     private final RolledRepo rolledRepo;
     private final RolledMapper rolledMapper;
 
-    
+
     @Override
     public Rolled save(RolledDto rolledDto) {
         return rolledRepo.save(rolledMapper.toRolled(rolledDto));
@@ -28,9 +28,10 @@ public class RolledServiceImpl implements RolledService {
     public RolledDto findByName(String name) {
         Optional<Rolled> rolled = rolledRepo.findByName(name);
         //TODO сделать исключение
-        if(rolled.isPresent()){
+        if (rolled.isPresent()) {
             return rolledMapper.toRolledDto(rolled.get());
-        } return null;
+        }
+        return null;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class RolledServiceImpl implements RolledService {
     public RolledDto findById(Long id) {
         Optional<Rolled> rolled = rolledRepo.findById(id);
         //TODO сделать исключение
-        if(rolled.isPresent()){
+        if (rolled.isPresent()) {
             return rolledMapper.toRolledDto(rolled.get());
         }
         return null;
@@ -55,10 +56,11 @@ public class RolledServiceImpl implements RolledService {
 
     @Override
     public boolean deleteById(Long id) {
-        if(rolledRepo.existsById(id)){
+        if (rolledRepo.existsById(id)) {
             rolledRepo.deleteById(id);
             return true;
-        } return false;
+        }
+        return false;
     }
 
     @Override
@@ -71,11 +73,10 @@ public class RolledServiceImpl implements RolledService {
         return rolledRepo.existsById(id);
     }
 
-
     @Override
     public RolledDto update(Long id, RolledDto rolledDto) {
         Rolled rolledNew = rolledMapper.toRolled(rolledDto);
-        if(rolledRepo.findById(id).isEmpty()){
+        if (rolledRepo.findById(id).isEmpty()) {
             return null;
         }
         Rolled rolled = rolledRepo.findById(id).get();

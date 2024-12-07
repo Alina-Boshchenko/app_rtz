@@ -11,7 +11,6 @@ import java.util.Collection;
 @NoArgsConstructor
 public class OrderDto {
 
-
     private Collection<Long> idProducts;
 
     private boolean needInvoice;

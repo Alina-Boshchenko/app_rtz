@@ -9,5 +9,7 @@ import ru.boshchenko.rtz_app.model.TypeProduct;
 public interface TypeProductMapper {
 
     TypeProduct toTypeProduct(TypeProductDto typeProductDto);
+
     TypeProductDto toTypeProductDto(TypeProduct typeProduct);
+
 }

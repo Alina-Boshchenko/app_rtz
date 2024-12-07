@@ -2,15 +2,14 @@
     display: none;
 }
 
-/* Блок для загрузки фото */
 .upload-container {
     width: 100px;
     height: 100px;
-    background-color: #cccccc; /* Серый цвет */
+    background-color: #cccccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dashed #999999; /* Пунктирная рамка */
+    border: 2px dashed #999999;
     cursor: pointer;
     position: relative;
 }
@@ -24,7 +23,7 @@
 }
 
 .upload-container:hover {
-    background-color: #bbbbbb; /* Более темный серый при наведении */
+    background-color: #bbbbbb;
 }
 
 .upload-text {
@@ -33,7 +32,6 @@
     text-align: center;
 }
 
-/*Блок для логина, тел, почты*/
 #dataLogin {
     border: 1px solid #ccc;
     padding: 10px;
@@ -51,8 +49,6 @@
     padding: 10px;
     overflow-y: auto;
 }
-
-/* кнопка */
 
 button {
     background: rgb(121, 184, 184);
@@ -82,7 +78,6 @@ button:hover {
     );
 }
 
-/* поле ввода ФИО*/
 .input-container {
     display: flex;
     flex-direction: column;

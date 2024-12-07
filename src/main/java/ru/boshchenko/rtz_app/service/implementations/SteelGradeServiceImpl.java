@@ -27,7 +27,9 @@ public class SteelGradeServiceImpl implements SteelGradeService {
     public SteelGradeDto findByName(String name) {
         Optional<SteelGrade> optionalSteelGrade = steelGradeRepo.findByName(name);
         //TODO сделать исключение
-        if (optionalSteelGrade.isPresent()) {return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());}
+        if (optionalSteelGrade.isPresent()) {
+            return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());
+        }
         return null;
     }
 
@@ -40,7 +42,9 @@ public class SteelGradeServiceImpl implements SteelGradeService {
     public SteelGradeDto findById(Long id) {
         Optional<SteelGrade> optionalSteelGrade = steelGradeRepo.findById(id);
         //TODO сделать исключение
-        if (optionalSteelGrade.isPresent()) {return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());}
+        if (optionalSteelGrade.isPresent()) {
+            return steelGradeMapper.toSteelGradeDto(optionalSteelGrade.get());
+        }
         return null;
     }
 
@@ -54,7 +58,8 @@ public class SteelGradeServiceImpl implements SteelGradeService {
         if (steelGradeRepo.existsById(id)) {
             steelGradeRepo.deleteById(id);
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override
@@ -70,11 +75,12 @@ public class SteelGradeServiceImpl implements SteelGradeService {
     @Override
     public SteelGradeDto updateSteelGrade(Long id, SteelGradeDto steelGradeDto) {
         SteelGrade steelGradeNew = steelGradeMapper.toSteelGrade(steelGradeDto);
-        if(steelGradeRepo.findById(id).isEmpty()){
+        if (steelGradeRepo.findById(id).isEmpty()) {
             return null;
         }
         SteelGrade steelGrade = steelGradeRepo.findById(id).get();
         steelGrade.setName(steelGradeNew.getName());
         return steelGradeMapper.toSteelGradeDto(steelGrade);
     }
+
 }

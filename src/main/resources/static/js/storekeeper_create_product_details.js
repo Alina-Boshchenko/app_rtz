@@ -1,4 +1,4 @@
-document.getElementById('productForm').addEventListener('submit', function(event) {
+document.getElementById('productForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     var name = document.getElementById('name').value.trim();
@@ -17,7 +17,7 @@ document.getElementById('productForm').addEventListener('submit', function(event
 
     var url;
 
-    switch(selectedCategory.id) {
+    switch (selectedCategory.id) {
         case 'rolledName':
             url = 'http://localhost:8080/api/rolled/create';
             break;
@@ -46,15 +46,15 @@ document.getElementById('productForm').addEventListener('submit', function(event
         },
         body: JSON.stringify(data)
     })
-        .then(function(response) {
+        .then(function (response) {
             if (!response.ok) {
                 throw new Error('Ошибка сети');
             }
-            return response.text().then(function(text) {
+            return response.text().then(function (text) {
                 if (text) {
                     try {
                         return JSON.parse(text);
-                    } catch(e) {
+                    } catch (e) {
                         console.error('Ошибка разбора JSON:', e);
                         return {};
                     }
@@ -63,11 +63,11 @@ document.getElementById('productForm').addEventListener('submit', function(event
                 }
             });
         })
-        .then(function(data) {
+        .then(function (data) {
             document.getElementById('productForm').reset();
             alert('Товар сохранен');
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.error('Ошибка сети:', error);
         });
 });

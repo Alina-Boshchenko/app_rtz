@@ -26,7 +26,6 @@ public interface ProductMapper {
             source = "steelGradeName")
     Product toProduct(ProductDto productDto);
 
-
     @Mapping(target = "rolledName",
             qualifiedByName = {"ProductMapperUtil", "getNameRolled"},
             source = "rolled")
@@ -40,7 +39,6 @@ public interface ProductMapper {
             qualifiedByName = {"ProductMapperUtil", "getNameSteelGrade"},
             source = "steelGrade")
     ProductDto toProductDto(Product product);
-
 
 }
 

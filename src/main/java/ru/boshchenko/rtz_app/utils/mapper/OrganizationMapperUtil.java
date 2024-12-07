@@ -15,23 +15,26 @@ import java.util.Collection;
 public class OrganizationMapperUtil {
 
     private final UserService userService;
-/** ленивая загрузка, чтобы не попадать в цикл */
+
+    /**
+     * ленивая загрузка, чтобы не попадать в цикл
+     */
     @Autowired
     public OrganizationMapperUtil(@Lazy UserService userService) {
         this.userService = userService;
     }
 
     @Named("getUsersName")
-    public Collection<String> getUsersName(Collection<User> users){
-        if (users == null){
+    public Collection<String> getUsersName(Collection<User> users) {
+        if (users == null) {
             return null;
         }
         return users.stream().map(User::getUsername).toList();
     }
 
     @Named("getUsers")
-    public Collection<User> getUsers(Collection<String> usersName){
-        if (usersName == null){
+    public Collection<User> getUsers(Collection<String> usersName) {
+        if (usersName == null) {
             return null;
         }
         return usersName.stream().map(userService::findByUsername).toList();

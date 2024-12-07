@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
-
 import java.util.Collection;
 
 @Data
@@ -18,7 +17,9 @@ public class UserDto {
 
     private Long id;
     private String username;
-    /** передаем только при получении данных из вне, т.е. при создании пользователя */
+    /**
+     * передаем только при получении данных из вне, т.е. при создании пользователя
+     */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String firstName;
@@ -28,7 +29,5 @@ public class UserDto {
     private String phone;
     private Long inn;
     private Collection<String> organizationsName;
-
-
 
 }

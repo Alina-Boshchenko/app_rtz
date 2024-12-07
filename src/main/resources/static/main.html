@@ -1,301 +1,282 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Мета-теги для CSRF-защиты -->
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="_csrf" content="${_csrf.token}">
     <meta name="_csrf_header" content="${_csrf.headerName}">
     <title>РТЗ главная</title>
-    <link rel="stylesheet" href="/css/main_style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
+    <link rel="stylesheet" href="/css/main_style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div class="wrapper">
+    <header>
         <div class="header-container">
-          <a href="#" class="branding">
-            <img class="img-logo" src="imeg/label.png" alt="logo"/>
-            <h3 id="org-name">Рязанский Трубный Завод</h3>
-          </a>
-          <nav class="navigation">
-            <a href="#link1">Продукция</a>
-            <a href="#link2">О Компании</a>
-            <a href="#link3">Вакансии</a>
-            <a href="#link4">Контакты</a>
-          </nav>
-          <div class="phone-number">+7 (4912) 45-50-00</div>
-          <div>
-            <a href="registration.html"><button class="auth-button">Регистрация</button></a>
-            <button class="auth-button" id="openModalBtn">Авторизация</button>
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <div class="close-position">
-                  <h2 class="h2-close">Вход в личный кабинет</h2>
-                  <span class="close">&times;</span>
+            <a href="#" class="branding">
+                <img class="img-logo" src="imeg/label.png" alt="logo"/>
+                <h3 id="org-name">Рязанский Трубный Завод</h3>
+            </a>
+            <nav class="navigation">
+                <a href="main_products.html">Продукция</a>
+                <a href="main_about_company.html">О Компании</a>
+                <a href="main_job_openings.html">Вакансии</a>
+                <a href="#footer">Контакты</a>
+            </nav>
+            <div class="phone-number">+7 (4912) 45-50-00</div>
+            <div>
+                <a href="registration.html">
+                    <button class="auth-button">Регистрация</button>
+                </a>
+                <button class="auth-button" id="openModalBtn">Авторизация</button>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <div class="close-position">
+                            <h2 class="h2-close">Вход в личный кабинет</h2>
+                            <span class="close">&times;</span>
+                        </div>
+                        <form>
+                            <label for="username">Логин:</label>
+                            <input type="text" id="username" name="username"/><br/><br/>
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password" name="password"/>
+                            <div class="form-input">
+                                <div>
+                                    <input type="checkbox" id="showPassword"/>Показать пароль<br/><br/>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="rememberMe"/>Запомнить<br/><br/>
+                                </div>
+                            </div>
+                            <a href="in_development.html" id="forgotPassword">Забыли логин или пароль?</a
+                            ><br/><br/>
+                            <div class="submit-button">
+                                <button type="submit" id="loginBtn">Войти</button>
+                                <a href="registration.html">
+                                    <button class="auth-button">Регистрация</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-                <form>
-                  <label for="username">Логин:</label>
-                  <input type="text" id="username" name="username"/><br /><br />
-
-                  <label for="password">Пароль:</label>
-                  <input type="password" id="password" name="password" />
-
-                  <div class="form-input">
-                    <div>
-                      <input type="checkbox" id="showPassword" />Показать пароль<br /><br />
-                    </div>
-                    <div>
-                      <input type="checkbox" id="rememberMe" />Запомнить<br /><br />
-                    </div>
-                  </div>
-                  <a href="#" id="forgotPassword">Забыли логин или пароль?</a
-                  ><br /><br />
-                  <div class="submit-button">
-
-                    <button type="submit" id="loginBtn">Войти</button>
-
-                    <a href="registration.html"><button class="auth-button">Регистрация</button></a>
-<!--                    <button type="button" id="registerBtn">-->
-<!--                      Зарегистрироваться-->
-<!--                    </button>-->
-                  </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
-      </header>
-      <main>
+    </header>
+    <main>
         <div class="first-block">
-          <div class="slider" id="slider">
-            <div
-              class="slide"
-              style="
+            <div class="slider" id="slider">
+                <div class="slide" style="
                 background-image: url('/imeg/background_1.jpg');
                 width: 100%;
                 height: 820px;
                 object-fit: cover;
-              "
-            ></div>
-            <div
-              class="slide"
-              style="
+              "></div>
+                <div class="slide" style="
                 background-image: url('/imeg/background_2.jpg');
                 display: none;
                 width: 100%;
                 height: 820px;
                 object-fit: cover;
-              "
-            ></div>
-            <div
-              class="slide"
-              style="
+              "></div>
+                <div class="slide" style="
                 background-image: url('/imeg/background_3.jpg');
                 display: none;
                 width: 100%;
                 height: 820px;
                 object-fit: cover;
-              "
-            ></div>
-            <div
-              class="slide"
-              style="
+              "></div>
+                <div class="slide" style="
                 background-image: url('/imeg/background_4.jpg');
                 display: none;
                 width: 100%;
                 height: 820px;
                 object-fit: cover;
-              "
-            ></div>
-            <div class="content">
-              <h1 class="title" id="slide-title">
-                Производство и продажа металлопроката
-              </h1>
-              <p class="description" id="slide-description">
-                Более 20 лет успешной работы! Более 4 тыс. позиций
-                метоллоконструкций в наличии! Более 15 тыс. довольных клиентов!
-              </p>
-              <a id="slide-href" href="#" class="more-button">Подробнее →</a>
+              "></div>
+                <div class="content">
+                    <h1 class="title" id="slide-title">
+                        Производство и продажа металлопроката
+                    </h1>
+                    <p class="description" id="slide-description">
+                        Более 20 лет успешной работы! Более 4 тыс. позиций
+                        метоллоконструкций в наличии! Более 15 тыс. довольных клиентов!
+                    </p>
+                    <a id="slide-href" href="main_about_company.html" class="more-button">Подробнее →</a>
+                </div>
+                <div class="controls">
+                    <div class="control-button" onclick="prevSlide()">←</div>
+                    <div class="control-button" onclick="nextSlide()">→</div>
+                </div>
             </div>
-            <div class="controls">
-              <div class="control-button" onclick="prevSlide()">←</div>
-              <div class="control-button" onclick="nextSlide()">→</div>
-            </div>
-          </div>
         </div>
         <div class="second-block">
-          <div class="cats">
-            <div class="cats__el cats__el-1">
-              <a href="#" class="cats__title">Трубный прокат</a>
-              <div class="cats__links">
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Трубы профильные</a>
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы профильные горячекатаные</a
-                  >
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы профильные холоднокатаные</a
-                  >
+            <div class="cats">
+                <div class="cats__el cats__el-1">
+                    <a href="main_products.html" class="cats__title">Трубный прокат</a>
+                    <div class="cats__links">
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Трубы профильные</a>
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы профильные горячекатаные</a
+                            >
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы профильные холоднокатаные</a
+                            >
+                        </div>
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Трубы электросварные</a>
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы электросварные х/к</a
+                            >
+                        </div>
+                    </div>
+                    <div class="cats__links">
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Трубы водогазопроводные</a>
+                        </div>
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Трубы оцинкованные</a>
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы электросварные оцинкованные</a
+                            >
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы профильные оцинкованные</a
+                            >
+                            <a href="main_products.html" class="cats__link cats__link-small"
+                            >Трубы ВГП оцинкованные</a
+                            >
+                        </div>
+                    </div>
+                    <img class="cats__img" src="/imeg/cats__img-1.png" alt=""/>
                 </div>
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Трубы электросварные</a>
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы электросварные х/к</a
-                  >
+                <div class="cats__el cats__el-2">
+                    <a href="main_products.html" class="cats__title">Сортовой прокат</a>
+                    <div class="cats__links">
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Квадрат</a>
+                        </div>
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Круг</a>
+                        </div>
+                    </div>
+                    <div class="cats__links">
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Поковка</a>
+                        </div>
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Полоса</a>
+                        </div>
+                        <div class="cats__block">
+                            <a href="main_products.html" class="cats__link">Шестигранник</a>
+                        </div>
+                    </div>
+                    <img class="cats__img" src="/imeg/cats__img-2.png" alt=""/>
                 </div>
-              </div>
-              <div class="cats__links">
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Трубы водогазопроводные</a>
+                <div class="cats__els">
+                    <div class="cats__el cats__el-3 cats__el-small">
+                        <a href="main_products.html" class="cats__title">Сетка сварная</a>
+                        <div class="cats__links"></div>
+                        <img class="cats__img" src="/imeg/cats__img-3.png" alt=""/>
+                    </div>
+                    <div class="cats__el cats__el-4 cats__el-small">
+                        <a href="main_products.html" class="cats__title">Листовой прокат</a>
+                        <div class="cats__links">
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Лист горячекатаный</a>
+                                <a href="main_products.html" class="cats__link cats__link-small"
+                                >Лист конструкционный</a
+                                >
+                                <a href="main_products.html" class="cats__link cats__link-small"
+                                >Лист низколегированный</a
+                                >
+                            </div>
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Лист рифленый</a>
+                            </div>
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Лист холоднокатаный</a>
+                            </div>
+                        </div>
+                        <img class="cats__img" src="/imeg/list 2.png" alt=""/>
+                    </div>
+                    <div class="cats__el cats__el-5 cats__el-small">
+                        <a href="main_products.html" class="cats__title">Фасонный прокат</a>
+                        <div class="cats__links">
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Балка горячекатаная</a>
+                            </div>
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Уголок</a>
+                            </div>
+                            <div class="cats__block">
+                                <a href="main_products.html" class="cats__link">Швеллер</a>
+                                <a href="main_products.html" class="cats__link cats__link-small"
+                                >Швеллер гнутый</a
+                                >
+                                <a href="main_products.html" class="cats__link cats__link-small"
+                                >Швеллер горячекатаный</a
+                                >
+                            </div>
+                        </div>
+                        <img class="cats__img" src="/imeg/cats__img-5.png" alt=""/>
+                    </div>
                 </div>
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Трубы оцинкованные</a>
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы электросварные оцинкованные</a
-                  >
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы профильные оцинкованные</a
-                  >
-                  <a href="#" class="cats__link cats__link-small"
-                    >Трубы ВГП оцинкованные</a
-                  >
-                </div>
-              </div>
-              <img class="cats__img" src="/imeg/cats__img-1.png" alt="" />
-            </div>
-            <div class="cats__el cats__el-2">
-              <a href="#" class="cats__title">Сортовой прокат</a>
-              <div class="cats__links">
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Квадрат</a>
-                </div>
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Круг</a>
-                </div>
-              </div>
-              <div class="cats__links">
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Поковка</a>
-                </div>
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Полоса</a>
-                </div>
-                <div class="cats__block">
-                  <a href="#" class="cats__link">Шестигранник</a>
-                </div>
-              </div>
-              <img class="cats__img" src="/imeg/cats__img-2.png" alt="" />
-            </div>
-            <div class="cats__els">
-              <div class="cats__el cats__el-3 cats__el-small">
-                <a href="#" class="cats__title">Сетка сварная</a>
-                <div class="cats__links"></div>
-                <img class="cats__img" src="/imeg/cats__img-3.png" alt="" />
-              </div>
-              <div class="cats__el cats__el-4 cats__el-small">
-                <a href="#" class="cats__title">Листовой прокат</a>
-                <div class="cats__links">
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Лист горячекатаный</a>
-                    <a href="#" class="cats__link cats__link-small"
-                      >Лист конструкционный</a
+                <div class="cats__el cats__el-6">
+                    <a href="main_products.html" class="cats__title"
+                    >Нестандартные профили по чертежам заказчика</a
                     >
-                    <a href="#" class="cats__link cats__link-small"
-                      >Лист низколегированный</a
-                    >
-                  </div>
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Лист рифленый</a>
-                  </div>
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Лист холоднокатаный</a>
-                  </div>
+                    <div class="cats__block">
+                        <a href="main_products.html" class="cats__link">Незамкнутые профили</a>
+                        <a href="main_products.html" class="cats__link">Профиль сварной</a>
+                        <a href="main_products.html" class="cats__link">Т-образный профиль</a>
+                        <a href="main_products.html" class="cats__link">Треугольная труба</a>
+                    </div>
+                    <img class="cats__img" src="/imeg/3 2139944425.png" alt=""/>
                 </div>
-                <img class="cats__img" src="/imeg/list 2.png" alt="" />
-              </div>
-              <div class="cats__el cats__el-5 cats__el-small">
-                <a href="#" class="cats__title">Фасонный прокат</a>
-                <div class="cats__links">
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Балка горячекатаная</a>
-                  </div>
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Уголок</a>
-                  </div>
-                  <div class="cats__block">
-                    <a href="#" class="cats__link">Швеллер</a>
-                    <a href="#" class="cats__link cats__link-small"
-                      >Швеллер гнутый</a
-                    >
-                    <a href="#" class="cats__link cats__link-small"
-                      >Швеллер горячекатаный</a
-                    >
-                  </div>
-                </div>
-                <img class="cats__img" src="/imeg/cats__img-5.png" alt="" />
-              </div>
             </div>
-            <div class="cats__el cats__el-6">
-              <a href="#" class="cats__title"
-                >Нестандартные профили по чертежам заказчика</a
-              >
-              <div class="cats__block">
-                <a href="#" class="cats__link">Незамкнутые профили</a>
-                <a href="#" class="cats__link">Профиль сварной</a>
-                <a href="#" class="cats__link">Т-образный профиль</a>
-                <a href="#" class="cats__link">Треугольная труба</a>
-              </div>
-              <img class="cats__img" src="/imeg/3 2139944425.png" alt="" />
-            </div>
-          </div>
         </div>
-      </main>
-      <footer>
-        <footer class="footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">
-                <img class="img-logo" src="imeg/label.png" alt="logo"/>
-                <a href="#" class="href-footer">РЯЗАНСКИЙ ТРУБНЫЙ ЗАВОД</a>
-              </div>
-              <div class="col-md-4">
-                <h5>Контакты</h5>
-                <p>Телефон: +7 (4912) 45-50-00</p>
-                <p>Email: zakaz-ryazan@</p>
-              </div>
-              <div class="col-md-4">
-                <h5>Адрес</h5>
-                <p>390011, г. Рязань, Южный Промузел, 6, стр. 36, оф. 100</p>
-              </div>
+    </main>
+    <footer>
+        <footer class="footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-logo" src="imeg/label.png" alt="logo"/>
+                        <a href="#" class="href-footer">РЯЗАНСКИЙ ТРУБНЫЙ ЗАВОД</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Контакты</h5>
+                        <p>Телефон: +7 (4912) 45-50-00</p>
+                        <p>Email: zakaz-ryazan@</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Адрес</h5>
+                        <p>390011, г. Рязань, Южный Промузел, 6, стр. 36, оф. 100</p>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="footer-bottom">
+                    <div>
+                        <p>© 2024. Все права защищены</p>
+                    </div>
+                    <div>
+                        <a href="privacy_policy.html" class="href-footer">Политика конфиденциальности</a>
+                    </div>
+                    <div>
+                        <a href="user_agreement.html" class="href-footer">Пользовательское соглашение</a>
+                    </div>
+                </div>
             </div>
-            <div class="line"></div>
-            <div class="footer-bottom">
-              <div>
-                <p>© 2024. Все права защищены</p>
-              </div>
-              <div>
-                <a href="#" class="href-footer">Политика конфиденциальности</a>
-              </div>
-              <div>
-                <a href="#" class="href-footer">Пользовательское соглашение</a>
-              </div>
-            </div>
-          </div>
         </footer>
-      </footer>
-    </div>
-    <script src="/js/main_script.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    </footer>
+</div>
+<script src="/js/main_script.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>

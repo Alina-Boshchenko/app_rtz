@@ -1,6 +1,6 @@
 package ru.boshchenko.rtz_app.dto;
 
 
-public record StandardDto (String name) {
+public record StandardDto(String name) {
 
 }

@@ -13,7 +13,6 @@ import java.util.Collection;
 
 public class OrganizationDto {
 
-
     private Long id;
 
     private String name;
@@ -33,6 +32,5 @@ public class OrganizationDto {
     private Long paymentAccount;
 
     private Collection<String> usersName;
-
 
 }

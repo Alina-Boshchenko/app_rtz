@@ -1,6 +1,5 @@
 package ru.boshchenko.rtz_app.mapper;
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -10,7 +9,7 @@ import ru.boshchenko.rtz_app.utils.mapper.UserMapperUtil;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         uses = {UserMapperUtil.class},
-        imports ={ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil.class})
+        imports = {ru.boshchenko.rtz_app.utils.mapper.ProductMapperUtil.class})
 public interface UserMapper {
 
     @Mapping(target = "organizations",

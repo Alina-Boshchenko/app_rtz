@@ -1,0 +1,40 @@
+label {
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
+}
+
+input, select {
+    font-size: 1.1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+#saveProduct {
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+    background: rgb(121, 184, 184);
+    background: linear-gradient(
+            85deg,
+            rgba(121, 184, 184, 1) 0%,
+            rgba(117, 175, 134, 0.7931547619047619) 56%
+    );
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#saveProduct:hover {
+    background: rgb(99, 152, 152);
+    background: linear-gradient(
+            85deg,
+            rgb(81, 126, 126) 0%,
+            rgb(81, 122, 94) 53%
+    );
+}

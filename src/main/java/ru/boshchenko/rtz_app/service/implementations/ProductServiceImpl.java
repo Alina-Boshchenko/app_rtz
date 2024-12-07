@@ -53,7 +53,8 @@ public class ProductServiceImpl implements ProductService {
         if (productRepo.existsById(id)) {
             productRepo.deleteById(id);
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override
@@ -87,4 +88,5 @@ public class ProductServiceImpl implements ProductService {
         productRepo.save(product);
         return productMapper.toProductDto(product);
     }
+
 }

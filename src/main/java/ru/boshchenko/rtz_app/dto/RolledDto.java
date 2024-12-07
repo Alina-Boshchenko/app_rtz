@@ -1,4 +1,4 @@
 package ru.boshchenko.rtz_app.dto;
 
-public record RolledDto (String name) {
+public record RolledDto(String name) {
 }

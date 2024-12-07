@@ -12,6 +12,7 @@ public interface SteelGradeService {
     SteelGrade save(SteelGradeDto steelGradeDto);
 
     SteelGradeDto findByName(String name);
+
     SteelGrade findByNameSteelGrade(String name);
 
 
@@ -24,7 +25,6 @@ public interface SteelGradeService {
     void delete(SteelGradeDto steelGradeDto);
 
     boolean existsById(Long id);
-
 
     SteelGradeDto updateSteelGrade(Long id, SteelGradeDto steelGradeDto);
 

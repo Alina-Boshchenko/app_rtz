@@ -48,11 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('saveButton').addEventListener('click', async () => {
-        // Получаем значения из полей ввода
         const pricePerTonValue = document.getElementById('pricePerTonInput').value;
         const pricePerMeterValue = document.getElementById('pricePerMeterInput').value;
 
-        // Обновляем объект productData
         productData.pricePerTon = pricePerTonValue;
         productData.pricePerMeter = pricePerMeterValue;
 

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import ru.boshchenko.rtz_app.security.RtzAuthenticationSuccessHandler;
 import ru.boshchenko.rtz_app.security.RtzUserDetailsService;
 
 @Configuration
@@ -34,20 +35,23 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, RtzAuthenticationSuccessHandler successHandler) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/", "main.html",
                                 "registration.html", "/api/user/create", "in_development.html",
-                                "/css/**", "/js/**", "/imeg/**").permitAll()
+                                "/css/**", "/js/**", "/imeg/**", "/api/product/all",
+                                "main_about_company.html", "main_job_openings.html",
+                                "main_products.html").permitAll()
+
                         .requestMatchers("/client/**").hasRole("USER")
                         .requestMatchers("/manager/**").hasRole("MANAGER")
                         .requestMatchers("/storekeeper/**").hasRole("STOREKEEPER")
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form.loginProcessingUrl("/login").permitAll()
+                .formLogin(form -> form.loginProcessingUrl("/login").permitAll().successHandler(successHandler)
                 )
-                .logout(logout -> logout.permitAll()
+                .logout(logout -> logout.logoutSuccessUrl("/main.html").permitAll()
                 )
                 .build();
     }

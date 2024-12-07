@@ -18,7 +18,6 @@ public class StandardServiceImpl implements StandardService {
     private final StandardRepo standardRepo;
     private final StandardMapper standardMapper;
 
-
     @Override
     public Standard save(StandardDto standardDto) {
         return standardRepo.save(standardMapper.toStandard(standardDto));
@@ -30,7 +29,8 @@ public class StandardServiceImpl implements StandardService {
         //TODO сделать исключение
         if (standard.isPresent()) {
             return standardMapper.toStandardDto(standard.get());
-        } return null;
+        }
+        return null;
     }
 
     @Override
@@ -42,7 +42,9 @@ public class StandardServiceImpl implements StandardService {
     public StandardDto findById(Long id) {
         Optional<Standard> standard = standardRepo.findById(id);
         //TODO сделать исключение
-        if (standard.isPresent()) {return standardMapper.toStandardDto(standard.get());}
+        if (standard.isPresent()) {
+            return standardMapper.toStandardDto(standard.get());
+        }
         return null;
     }
 
@@ -53,10 +55,11 @@ public class StandardServiceImpl implements StandardService {
 
     @Override
     public boolean deleteById(Long id) {
-        if(standardRepo.existsById(id)){
+        if (standardRepo.existsById(id)) {
             standardRepo.deleteById(id);
             return true;
-        } return false;
+        }
+        return false;
     }
 
     @Override
@@ -72,7 +75,7 @@ public class StandardServiceImpl implements StandardService {
     @Override
     public StandardDto updateStandard(Long id, StandardDto standardDto) {
         Standard standardNew = standardMapper.toStandard(standardDto);
-        if(standardRepo.findById(id).isEmpty()){
+        if (standardRepo.findById(id).isEmpty()) {
             return null;
         }
         Standard standard = standardRepo.findById(id).get();
@@ -80,4 +83,5 @@ public class StandardServiceImpl implements StandardService {
         standardRepo.save(standard);
         return standardMapper.toStandardDto(standard);
     }
+
 }

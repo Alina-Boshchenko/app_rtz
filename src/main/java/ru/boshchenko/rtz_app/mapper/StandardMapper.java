@@ -9,5 +9,7 @@ import ru.boshchenko.rtz_app.model.Standard;
 public interface StandardMapper {
 
     Standard toStandard(StandardDto standardDto);
+
     StandardDto toStandardDto(Standard standard);
+
 }

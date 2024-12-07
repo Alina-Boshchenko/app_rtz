@@ -6,11 +6,11 @@ import ru.boshchenko.rtz_app.model.Organization;
 
 import java.util.Optional;
 
-
 @Repository
 public interface OrganizationRepo extends JpaRepository<Organization, Long> {
 
     Optional<Organization> findByName(String name);
 
     Optional<Organization> findByInn(Long inn);
+
 }

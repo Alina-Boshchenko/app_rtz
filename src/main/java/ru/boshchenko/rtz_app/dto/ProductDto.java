@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +15,7 @@ public class ProductDto {
 
     private String typeName;
 
-    private String name;
+    private String name;//
 
     private String standardName;
 
@@ -33,6 +32,5 @@ public class ProductDto {
     private Double pricePerMeter;
 
     private Double pricePerTon;
-
 
 }

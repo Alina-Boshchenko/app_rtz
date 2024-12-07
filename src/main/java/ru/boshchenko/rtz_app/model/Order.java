@@ -30,5 +30,4 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-
 }

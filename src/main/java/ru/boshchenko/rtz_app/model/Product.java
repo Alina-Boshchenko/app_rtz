@@ -21,7 +21,7 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "type_id")
     private TypeProduct type;
 
-    @Column(name = "name", length = 40, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne
@@ -52,7 +52,5 @@ public class Product extends BaseEntity {
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Collection<Order> orders;
-
-
 
 }

@@ -20,16 +20,15 @@ public class OrganizationRestController {
     @GetMapping("/all")
     public ResponseEntity<List<OrganizationDto>> getAllOrganizations() {
         List<OrganizationDto> organizations = organizationService.findAll();
-        if (organizations.isEmpty()){
+        if (organizations.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        System.out.println("пришел запрос");
         return new ResponseEntity<>(organizations, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrganizationDto> getOrganizationById(@PathVariable("id") Long id) {
-        if (organizationService.existsById(id)){
+        if (organizationService.existsById(id)) {
             return new ResponseEntity<>(organizationService.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,15 +37,12 @@ public class OrganizationRestController {
     @PostMapping("/create")
     public ResponseEntity<ProductDto> createOrganization(@RequestBody OrganizationDto organizationDto) {
         organizationService.save(organizationDto);
-        System.out.println(organizationDto.toString());
-        System.out.println("продукт сохранен");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //TODO посмотреть какой должен быть статус ответа
     @PatchMapping("/{id}")
     public ResponseEntity<OrganizationDto> updateOrganization(@PathVariable("id") Long id, @RequestBody OrganizationDto organizationDto) {
-        if(organizationService.updateOrganization(id, organizationDto)==null){
+        if (organizationService.updateOrganization(id, organizationDto) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         organizationService.updateOrganization(id, organizationDto);
@@ -54,11 +50,12 @@ public class OrganizationRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteOrganization(@PathVariable Long id){
-        if (!organizationService.deleteById(id)){
+    public ResponseEntity<String> deleteOrganization(@PathVariable Long id) {
+        if (!organizationService.deleteById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         organizationService.deleteById(id);
-        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+        return new ResponseEntity<>("It's ok delete product", HttpStatus.OK);
     }
+
 }

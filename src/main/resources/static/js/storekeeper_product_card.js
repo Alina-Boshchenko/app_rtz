@@ -45,8 +45,6 @@ function handleEditButtonClick() {
     fields.forEach(field => {
         const element = document.getElementById(field);
         const value = element.textContent;
-
-        // Создаем поле ввода
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'form-control';
@@ -67,7 +65,7 @@ function handleSaveButtonClick() {
         data[field] = input.value;
     });
 
-     patchProductData(data);
+    patchProductData(data);
 }
 
 async function patchProductData(data) {

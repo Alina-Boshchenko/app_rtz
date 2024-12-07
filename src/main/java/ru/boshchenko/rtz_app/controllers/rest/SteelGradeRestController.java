@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.boshchenko.rtz_app.dto.SteelGradeDto;
-import ru.boshchenko.rtz_app.model.SteelGrade;
 import ru.boshchenko.rtz_app.service.interfaces.SteelGradeService;
 
 import java.util.List;
@@ -37,13 +36,11 @@ public class SteelGradeRestController {
     @PostMapping("/create")
     public ResponseEntity<SteelGradeDto> createSteelGrade(@RequestBody SteelGradeDto steelGradeDto) {
         steelGradeService.save(steelGradeDto);
-        System.out.println("отработал стил грйед");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    //TODO посмотреть какой должен быть статус ответа
+
     @PatchMapping("/{id}")
     public ResponseEntity<SteelGradeDto> updateProduct(@PathVariable("id") Long id, @RequestBody SteelGradeDto steelGradeDto) {
-//        System.out.println(productDto);
         if(steelGradeService.updateSteelGrade(id, steelGradeDto)==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -59,9 +56,5 @@ public class SteelGradeRestController {
         steelGradeService.deleteById(id);
         return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
     }
-
-
-
-
 
 }

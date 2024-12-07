@@ -9,5 +9,7 @@ import ru.boshchenko.rtz_app.model.Rolled;
 public interface RolledMapper {
 
     Rolled toRolled(RolledDto rolledDto);
+
     RolledDto toRolledDto(Rolled rolled);
+
 }

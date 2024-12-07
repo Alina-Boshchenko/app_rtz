@@ -1,7 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
+
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.dto.OrderDto;
 import ru.boshchenko.rtz_app.mapper.OrderMapper;
@@ -35,10 +35,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean deleteById(Long id) {
-        if(orderRepo.existsById(id)) {
+        if (orderRepo.existsById(id)) {
             orderRepo.deleteById(id);
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override
@@ -65,4 +66,5 @@ public class OrderServiceImpl implements OrderService {
         orderRepo.save(order);
         return orderMapper.toOrderDto(order);
     }
+
 }

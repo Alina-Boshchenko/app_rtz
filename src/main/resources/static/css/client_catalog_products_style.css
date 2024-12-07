@@ -1,21 +1,31 @@
+.page-link-my {
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+    background: rgb(121, 184, 184);
+    background: linear-gradient(
+            85deg,
+            rgba(121, 184, 184, 1) 0%,
+            rgba(117, 175, 134, 0.7931547619047619) 56%
+    );
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
 
-table {
-  width: 100%;
-  border-collapse: collapse;
 }
-table, th, td {
-  border: 1px solid black;
-}
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-.pagination {
-  margin-top: 20px;
-}
-.pagination button {
-  padding: 5px 15px;
-  margin-right: 5px;
+
+.page-link-my:hover {
+    background: rgb(99, 152, 152);
+    background: linear-gradient(
+            85deg,
+            rgb(81, 126, 126) 0%,
+            rgb(81, 122, 94) 53%
+    );
+
 }
 
 

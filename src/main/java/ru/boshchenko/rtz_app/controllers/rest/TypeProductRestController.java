@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.boshchenko.rtz_app.dto.TypeProductDto;
-import ru.boshchenko.rtz_app.model.TypeProduct;
 import ru.boshchenko.rtz_app.service.interfaces.TypeProductService;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class TypeProductRestController {
     @GetMapping("/all")
     public ResponseEntity<List<TypeProductDto>> getAllTypeProducts() {
         List<TypeProductDto> typeProducts = typeProductService.findAll();
-        if(typeProducts.isEmpty()) {
+        if (typeProducts.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(typeProducts, HttpStatus.OK);
@@ -28,7 +27,7 @@ public class TypeProductRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TypeProductDto> getProductById(@PathVariable("id") Long id) {
-        if (typeProductService.existsById(id)){
+        if (typeProductService.existsById(id)) {
             return new ResponseEntity<>(typeProductService.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,15 +36,12 @@ public class TypeProductRestController {
     @PostMapping("/create")
     public ResponseEntity<TypeProductDto> createTypeProduct(@RequestBody TypeProductDto typeProductDto) {
         typeProductService.save(typeProductDto);
-        System.out.println("отработал тип");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //TODO посмотреть какой должен быть статус ответа
     @PatchMapping("/{id}")
     public ResponseEntity<TypeProductDto> updateProduct(@PathVariable("id") Long id, @RequestBody TypeProductDto typeProductDto) {
-//        System.out.println(productDto);
-        if(typeProductService.updateTypeProduct(id, typeProductDto)==null){
+        if (typeProductService.updateTypeProduct(id, typeProductDto) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         typeProductService.updateTypeProduct(id, typeProductDto);
@@ -53,14 +49,12 @@ public class TypeProductRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
-        if (!typeProductService.deleteById(id)){
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        if (!typeProductService.deleteById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         typeProductService.deleteById(id);
-        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+        return new ResponseEntity<>("It's ok delete product", HttpStatus.OK);
     }
-
-
 
 }

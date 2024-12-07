@@ -8,13 +8,13 @@ import ru.boshchenko.rtz_app.model.Order;
 import ru.boshchenko.rtz_app.utils.mapper.OrderMapperUtil;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-uses = {OrderMapperUtil.class},
-imports = {ru.boshchenko.rtz_app.utils.mapper.OrderMapperUtil.class})
+        uses = {OrderMapperUtil.class},
+        imports = {ru.boshchenko.rtz_app.utils.mapper.OrderMapperUtil.class})
 public interface OrderMapper {
 
     @Mapping(target = "products",
-    qualifiedByName = {"OrderMapperUtil", "getProducts"},
-    source = "idProducts")
+            qualifiedByName = {"OrderMapperUtil", "getProducts"},
+            source = "idProducts")
     @Mapping(target = "user",
             qualifiedByName = {"OrderMapperUtil", "getUser"},
             source = "userId")
@@ -27,4 +27,5 @@ public interface OrderMapper {
             qualifiedByName = {"OrderMapperUtil", "getUserId"},
             source = "user")
     OrderDto toOrderDto(Order order);
+
 }

@@ -1,5 +1,5 @@
 package ru.boshchenko.rtz_app.dto;
 
-public record TypeProductDto (String name) {
+public record TypeProductDto(String name) {
 
 }

@@ -6,11 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-
-/**
- * @Data это удобная сокращенная аннотация, которая объединяет функции @ToString,
- * @EqualsAndHashCode, @Getter / @Setter и @RequiredArgsConstructor вместе
- * */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

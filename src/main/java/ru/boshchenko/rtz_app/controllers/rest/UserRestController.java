@@ -19,16 +19,15 @@ public class UserRestController {
     @GetMapping("/all")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> users = userService.findAll();
-        if (users.isEmpty()){
+        if (users.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        System.out.println("пришел запрос");
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id) {
-        if (userService.existsById(id)){
+        if (userService.existsById(id)) {
             return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -36,17 +35,13 @@ public class UserRestController {
 
     @PostMapping("/create")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        System.out.println("дергнул метод");
         userService.save(userDto);
-        System.out.println(userDto.toString());
-        System.out.println("user сохранен");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //TODO посмотреть какой должен быть статус ответа
     @PatchMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
-        if(userService.updateUser(id, userDto)==null){
+        if (userService.updateUser(id, userDto) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         userService.updateUser(id, userDto);
@@ -54,16 +49,12 @@ public class UserRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
-        if (!userService.deleteById(id)){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        if (!userService.deleteById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         userService.deleteById(id);
-        return new ResponseEntity<>("It's ok delete product",HttpStatus.OK);
+        return new ResponseEntity<>("It's ok delete product", HttpStatus.OK);
     }
-
-
-
-
 
 }

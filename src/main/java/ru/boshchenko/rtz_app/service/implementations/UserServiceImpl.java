@@ -2,8 +2,6 @@ package ru.boshchenko.rtz_app.service.implementations;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.dto.UserDto;
@@ -21,12 +19,10 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-
 
     @Override
     public User save(UserDto userDto) {
@@ -38,9 +34,6 @@ public class UserServiceImpl implements UserService {
         return userRepo.save(user);
     }
 
-
-
-
     @Override
     public UserDto findByUsernameDto(String username) {
         //TODO сделать исключение
@@ -51,6 +44,7 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepo.findByUsername(username).orElse(null);
     }
+
     @Override
     public UserDto findByEmail(String email) {
         //TODO сделать исключение
@@ -69,7 +63,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(userRepo.findById(id).orElse(null));
     }
 
-/** логирование */
+    /**
+     * логирование
+     */
     @Override
     public List<UserDto> findAll() {
         List<UserDto> userDtoList = userRepo.findAll().stream().map(userMapper::toUserDto).toList();
@@ -99,7 +95,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto updateUser(Long id, UserDto userDto) {
         User userNew = userMapper.toUser(userDto);
-        if(userRepo.findById(id).isEmpty()){
+        if (userRepo.findById(id).isEmpty()) {
             return null;
         }
         User user = userRepo.findById(id).get();
@@ -113,6 +109,5 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
         return userMapper.toUserDto(user);
     }
-
 
 }

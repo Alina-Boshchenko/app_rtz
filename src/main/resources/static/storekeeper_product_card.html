@@ -1,212 +1,173 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ЛК кладовщика</title>
-  <link rel="stylesheet" href="/css/common_for_lc_style.css"/>
-  <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-          crossorigin="anonymous"
-  />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ЛК кладовщика</title>
+    <link rel="stylesheet" href="/css/common_for_lc_style.css"/>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+    />
 </head>
 <body>
 <div class="wrapper">
-  <header>
-    <div class="header-container">
-      <a href="#" class="branding">
-        <img class="img-logo" src="imeg/label.png" alt="logo"/>
-      </a>
+    <header>
+        <div class="header-container">
+            <a href="#" class="branding">
+                <img class="img-logo" src="imeg/label.png" alt="logo"/>
+            </a>
 
-      <nav class="navigation">
-        <a href="storekeeper_create_product.html">Регистрация товара</a>
-        <a href="in_development.html">Публикация новости</a>
-      </nav>
+            <nav class="navigation">
+                <a href="storekeeper_create_product.html">Регистрация товара</a>
+                <a href="in_development.html">Публикация новости</a>
+            </nav>
 
-      <a href="in_development.html" class="notifications">Уведомления</a>
+            <a href="in_development.html" class="notifications">Уведомления</a>
 
-      <button class="auth-button">Выйти</button>
-    </div>
-  </header>
+            <button class="auth-button" id="logout-button">Выйти</button>
+        </div>
+    </header>
 
-  <main>
-    <div class="sidebar">
-      <a href="storekeeper_main.html">Профиль</a>
-      <a href="storekeeper_storage.html">Склад</a>
-      <a href="#">Контрагенты</a>
-      <a href="#">Сотрудники</a>
-      <a href="#">Календарь отгрузок</a>
-      <a href="#">Новости</a>
-    </div>
-
-    <div class="content">
-      <!-- TODO убрать возможность поменять здесь тип прокат марку стали и стандарт  -->
-      <div class="container mt-4">
-
-        <!-- Первый блок: Заголовок с id="name" -->
-        <h1 id="name"></h1>
-
-        <!-- Второй блок: Два вертикальных блока -->
-        <div class="row">
-
-          <!-- Левый блок -->
-          <div class="col-md-6">
-
-            <!-- Первый горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Прокат:</label>
-              <div class="col-sm-8">
-                <span id="rolledName"></span>
-              </div>
-            </div>
-
-            <!-- Второй горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Тип:</label>
-              <div class="col-sm-8">
-                <span id="typeName"></span>
-              </div>
-            </div>
-
-            <!-- Третий горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Цена от</label>
-              <div class="col-sm-6">
-                <span id="pricePerTon"></span>
-              </div>
-              <div class="col-sm-2">
-                <span>р/т</span>
-              </div>
-            </div>
-
-            <!-- Четвертый горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Цена от</label>
-              <div class="col-sm-6">
-                <span id="pricePerMeter"></span>
-              </div>
-              <div class="col-sm-2">
-                <span>р/м</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Правый блок -->
-          <div class="col-md-6">
-
-            <!-- Первый горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Стандарт:</label>
-              <div class="col-sm-8">
-                <span id="standardName"></span>
-              </div>
-            </div>
-
-            <!-- Второй горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Марка стали:</label>
-              <div class="col-sm-8">
-                <span id="steelGradeName"></span>
-              </div>
-            </div>
-
-            <!-- Третий горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Размер:</label>
-              <div class="col-sm-8">
-                <span id="size"></span>
-              </div>
-            </div>
-
-            <!-- Четвертый горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Длина:</label>
-              <div class="col-sm-6">
-                <span id="length"></span>
-              </div>
-              <div class="col-sm-2">
-                <span>мм</span>
-              </div>
-            </div>
-
-            <!-- Пятый горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Толщина:</label>
-              <div class="col-sm-6">
-                <span id="thickness"></span>
-              </div>
-              <div class="col-sm-2">
-                <span>мм</span>
-              </div>
-            </div>
-
-            <!-- Шестой горизонтальный блок -->
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Вес:</label>
-              <div class="col-sm-6">
-                <span id="weight"></span>
-              </div>
-              <div class="col-sm-2">
-                <span>кг</span>
-              </div>
-            </div>
-
-          </div> <!-- Конец правого блока -->
-
-        </div> <!-- Конец второго блока -->
-
-        <!-- Третий блок: Кнопка "Изменить" -->
-        <div class="mt-3">
-          <button id="editButton" class="btn btn-primary">Изменить</button>
+    <main>
+        <div class="sidebar">
+            <a href="storekeeper_main.html">Профиль</a>
+            <a href="storekeeper_storage.html">Склад</a>
+            <a href="in_development.html">Контрагенты</a>
+            <a href="in_development.html">Сотрудники</a>
+            <a href="in_development.html">Календарь отгрузок</a>
+            <a href="in_development.html">Новости</a>
         </div>
 
-      </div> <!-- Конец контейнера -->
-
-
-
-
-
-    </div>
-  </main>
-
-  <footer>
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <img class="img-logo" src="imeg/label.png" alt="logo"/>
-            <a href="#" class="href-footer">РЯЗАНСКИЙ ТРУБНЫЙ ЗАВОД</a>
-          </div>
-          <div class="col-md-4">
-            <h5>Контакты</h5>
-            <p>Телефон: +7 (4912) 45-50-00</p>
-            <p>Email: zakaz-ryazan@</p>
-          </div>
-          <div class="col-md-4">
-            <h5>Адрес</h5>
-            <p>390011, г. Рязань, Южный Промузел, 6, стр. 36, оф. 100</p>
-          </div>
+        <div class="content">
+            <div class="container mt-4">
+                <h1 id="name"></h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Прокат:</label>
+                            <div class="col-sm-8">
+                                <span id="rolledName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Тип:</label>
+                            <div class="col-sm-8">
+                                <span id="typeName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Цена от</label>
+                            <div class="col-sm-6">
+                                <span id="pricePerTon"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>р/т</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Цена от</label>
+                            <div class="col-sm-6">
+                                <span id="pricePerMeter"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>р/м</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Стандарт:</label>
+                            <div class="col-sm-8">
+                                <span id="standardName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Марка стали:</label>
+                            <div class="col-sm-8">
+                                <span id="steelGradeName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Размер:</label>
+                            <div class="col-sm-8">
+                                <span id="size"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Длина:</label>
+                            <div class="col-sm-6">
+                                <span id="length"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>мм</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Толщина:</label>
+                            <div class="col-sm-6">
+                                <span id="thickness"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>мм</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Вес:</label>
+                            <div class="col-sm-6">
+                                <span id="weight"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>кг</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button id="editButton" class="btn btn-primary">Изменить</button>
+                </div>
+            </div>
         </div>
-        <div class="line"></div>
-        <div class="footer-bottom">
-          <div>
-            <p>© 2024. Все права защищены</p>
-          </div>
-          <div>
-            <a href="#" class="href-footer">Политика конфиденциальности</a>
-          </div>
-          <div>
-            <a href="#" class="href-footer">Пользовательское соглашение</a>
-          </div>
-        </div>
-      </div>
+    </main>
+
+    <footer>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-logo" src="imeg/label.png" alt="logo"/>
+                        <a href="main.html" class="href-footer">РЯЗАНСКИЙ ТРУБНЫЙ ЗАВОД</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Контакты</h5>
+                        <p>Телефон: +7 (4912) 45-50-00</p>
+                        <p>Email: zakaz-ryazan@</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Адрес</h5>
+                        <p>390011, г. Рязань, Южный Промузел, 6, стр. 36, оф. 100</p>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="footer-bottom">
+                    <div>
+                        <p>© 2024. Все права защищены</p>
+                    </div>
+                    <div>
+                        <a href="privacy_policy.html" class="href-footer">Политика конфиденциальности</a>
+                    </div>
+                    <div>
+                        <a href="user_agreement.html" class="href-footer">Пользовательское соглашение</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </footer>
-  </footer>
 </div>
 <script src="/js/storekeeper_product_card.js"></script>
+<script src="/js/logout_fun.js"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

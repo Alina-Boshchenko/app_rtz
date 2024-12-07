@@ -38,7 +38,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public boolean deleteById(Long id) {
-        if(roleRepo.existsById(id)) {
+        if (roleRepo.existsById(id)) {
             roleRepo.deleteById(id);
             return true;
         }
@@ -54,4 +54,5 @@ public class RoleServiceImpl implements RoleService {
     public boolean existsById(Long id) {
         return roleRepo.existsById(id);
     }
+
 }

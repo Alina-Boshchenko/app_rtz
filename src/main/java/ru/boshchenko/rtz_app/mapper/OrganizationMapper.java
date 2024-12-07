@@ -1,13 +1,11 @@
 package ru.boshchenko.rtz_app.mapper;
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import ru.boshchenko.rtz_app.dto.OrganizationDto;
 import ru.boshchenko.rtz_app.model.Organization;
 import ru.boshchenko.rtz_app.utils.mapper.OrganizationMapperUtil;
-
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         uses = {OrganizationMapperUtil.class},
@@ -23,6 +21,5 @@ public interface OrganizationMapper {
             qualifiedByName = {"OrganizationMapperUtil", "getUsersName"},
             source = "users")
     OrganizationDto toOrganizationDto(Organization organization);
-
 
 }

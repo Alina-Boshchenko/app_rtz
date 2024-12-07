@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetchProductData();
 
     document.getElementById('button-minus').addEventListener('click', decrementQuantity);
@@ -13,16 +13,12 @@ function getProductIdFromUrl() {
 }
 
 async function fetchProductData() {
-    //
-    // для проверки пока комечу, хз как передавать сюда айдишку
-
     // const productId = getProductIdFromUrl();
     // if (!productId) {
     //     console.error('ID товара не найден в URL');
     //     return;
     // }
-// если автоматически делать, то в феч передавать нужно будет такой юрик /api/product/${productId}
-
+// /api/product/${productId}
 
     try {
         const response = await fetch(`/api/product/1`);
@@ -106,7 +102,5 @@ function updateTotalPrice() {
 }
 
 function addToCart() {
-    // Реализация добавления товара в корзину
     console.log('Товар добавлен в корзину');
-    // Здесь можно отправить данные на сервер или обновить локальное хранилище
 }

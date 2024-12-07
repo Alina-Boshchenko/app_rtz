@@ -1,4 +1,4 @@
-async function getDataFromServer (url) {
+async function getDataFromServer(url) {
     let products;
     await fetch(url)
         .then(response => {
@@ -10,36 +10,63 @@ async function getDataFromServer (url) {
         .then(data => {
             try {
                 products = JSON.parse(JSON.stringify(data));
-                // console.log(products);
             } catch (error) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
         .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
+            console.error('Произошла проблема с операцией fetch:', error);
         });
-    console.log(products);
     return products;
 }
 
 let products = [];
 let currentPage = 1;
-const productsPerPage = 30;
-const totalPages = Math.ceil(products.length / productsPerPage);
+const productsPerPage = 10;
+let totalPages = 1;
 
-async function renderProducts(page) {
-    products = await getDataFromServer('http://localhost:8080/api/product/all')
+(async function loadProducts() {
+    products = await getDataFromServer('http://localhost:8080/api/product/all');
+    if (products && products.length > 0) {
+        totalPages = Math.ceil(products.length / productsPerPage);
+    } else {
+        totalPages = 1;
+    }
+    renderProducts(currentPage);
+})();
 
+function renderProducts(page) {
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
     const productsToShow = products.slice(startIndex, endIndex);
 
-    let productListHtml = `<table><tr><th>Наименование</th><th>Цена за тонну</th><th>Масса</th><th>Действие</th></tr>`;
+    let productListHtml = `
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Прокат</th>
+          <th>Тип товара</th>
+          <th>Наименование</th>
+          <th>Стандарт</th>
+          <th>Марка стали</th>
+          <th>Цена за метр/кг</th>
+          <th>Цена за тонну</th>
+          <th>Масса</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
 
     productsToShow.forEach((product, index) => {
         productListHtml += `
       <tr>
+        <td>${product.rolledName}</td>
+        <td>${product.typeName}</td>
         <td>${product.name}</td>
+        <td>${product.standardName}</td>
+        <td>${product.steelGradeName}</td>
+        <td>${product.pricePerMeter} руб.</td>
         <td>${product.pricePerTon} руб.</td>
         <td>
           <button onclick="changeMass(${startIndex + index}, -1)">-</button>
@@ -51,7 +78,7 @@ async function renderProducts(page) {
     `;
     });
 
-    productListHtml += `</table>`;
+    productListHtml += `</tbody></table>`;
     document.getElementById('productList').innerHTML = productListHtml;
 }
 

@@ -33,5 +33,4 @@ public interface OrganizationService {
 
     OrganizationDto updateOrganization(Long id, OrganizationDto organizationDto);
 
-
 }

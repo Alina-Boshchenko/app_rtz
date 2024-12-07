@@ -5,17 +5,13 @@ import lombok.*;
 
 import java.util.Collection;
 
-
-// "companies"
-//Company
-
 @Entity
 @Data
 @Builder(access = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "organizations")
-public class Organization extends BaseEntity{
+public class Organization extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -41,13 +37,13 @@ public class Organization extends BaseEntity{
     @Column(name = "payment_account")
     private Long paymentAccount;
 
-    @ManyToMany(fetch = FetchType.EAGER) // по умолчанию буде fetch = FetchType.LAZY (при загрузке род.сущ., дочерняя сущность загружена не будет, вмето неё создается proxy-объект),
+    @ManyToMany(fetch = FetchType.EAGER)
+    // по умолчанию буде fetch = FetchType.LAZY (при загрузке род.сущ., дочерняя сущность загружена не будет, вмето неё создается proxy-объект),
     // а не EAGER (все доч.сущ. будут загружены при загрузке род.сущ.)
     @JoinTable(
             name = "users_organizations",
             joinColumns = @JoinColumn(name = "organization_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Collection<User> users;
-
 
 }

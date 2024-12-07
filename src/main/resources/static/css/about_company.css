@@ -1,0 +1,31 @@
+.block {
+    margin-bottom: 20px;
+}
+
+.large-text {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.medium-text {
+    font-size: 1.5em;
+}
+
+.green-stripes::before,
+.green-stripes::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: green;
+    margin: 10px 0;
+}
+
+.flex-70 {
+    flex: 0 0 70%;
+    max-width: 70%;
+}
+
+.flex-30 {
+    flex: 0 0 30%;
+    max-width: 30%;
+}

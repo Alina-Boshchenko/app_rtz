@@ -23,37 +23,42 @@ public class ProductMapperUtil {
     private final SteelGradeService steelGradeService;
 
     @Named("getRolledByName")
-    public Rolled getRolledByName(String name){
-       return rolledService.findByNameRolled(name);
+    public Rolled getRolledByName(String name) {
+        return rolledService.findByNameRolled(name);
     }
 
     @Named("getTypeProductByName")
-    public TypeProduct getTypeProductByName(String name){
+    public TypeProduct getTypeProductByName(String name) {
         return typeProductService.findByNameTypeProduct(name);
     }
+
     @Named("getStandardByName")
-    public Standard getStandardByName(String name){
+    public Standard getStandardByName(String name) {
         return standardService.findByNameStandard(name);
     }
+
     @Named("getSteelGradeByName")
-    public SteelGrade getSteelGradeByName(String name){
+    public SteelGrade getSteelGradeByName(String name) {
         return steelGradeService.findByNameSteelGrade(name);
     }
 
     @Named("getNameRolled")
-    public String getNameRolled(Rolled rolled){
+    public String getNameRolled(Rolled rolled) {
         return rolled.getName();
     }
+
     @Named("getNameTypeProduct")
-    public String getNameTypeProduct(TypeProduct typeProduct){
+    public String getNameTypeProduct(TypeProduct typeProduct) {
         return typeProduct.getName();
     }
+
     @Named("getNameStandard")
-    public String getNameStandard(Standard standard){
+    public String getNameStandard(Standard standard) {
         return standard.getName();
     }
+
     @Named("getNameSteelGrade")
-    public String getNameSteelGrade(SteelGrade steelGrade){
+    public String getNameSteelGrade(SteelGrade steelGrade) {
         return steelGrade.getName();
     }
 }

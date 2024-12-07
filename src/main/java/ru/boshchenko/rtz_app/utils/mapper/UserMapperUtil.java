@@ -1,6 +1,5 @@
 package ru.boshchenko.rtz_app.utils.mapper;
 
-
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
@@ -17,20 +16,18 @@ public class UserMapperUtil {
     private final OrganizationService organizationService;
 
     @Named("getOrganizationsName")
-    public Collection<String> getOrganizationsName(Collection<Organization> organizations){
-        if(organizations == null){
+    public Collection<String> getOrganizationsName(Collection<Organization> organizations) {
+        if (organizations == null) {
             return null;
         }
         return organizations.stream().map(Organization::getName).toList();
     }
 
     @Named("getOrganizations")
-    public Collection<Organization> getOrganizations(Collection<String> organizationsName){
-        if(organizationsName == null){
+    public Collection<Organization> getOrganizations(Collection<String> organizationsName) {
+        if (organizationsName == null) {
             return null;
         }
         return organizationsName.stream().map(organizationService::findByName).toList();
     }
-
-
 }

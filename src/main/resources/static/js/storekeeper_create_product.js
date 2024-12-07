@@ -2,18 +2,22 @@ async function getRolledNames() {
     const response = await fetch('http://localhost:8080/api/rolled/all');
     return await response.json();
 }
+
 async function getTypeNames() {
     const response = await fetch('http://localhost:8080/api/typeproduct/all');
     return await response.json();
 }
+
 async function getStandardNames() {
     const response = await fetch('http://localhost:8080/api/standard/all');
     return await response.json();
 }
+
 async function getSteelGradeNames() {
     const response = await fetch('http://localhost:8080/api/steelgrade/all');
     return await response.json();
 }
+
 function populateSelect(id, data) {
     const select = document.getElementById(id);
     data.forEach(obj => {
@@ -26,7 +30,7 @@ function populateSelect(id, data) {
     const createNewOption = document.createElement('option');
     createNewOption.value = createNewOption.textContent = 'Создать новый';
     select.appendChild(createNewOption);
-    select.addEventListener('change', function() {
+    select.addEventListener('change', function () {
         if (this.value === 'Создать новый') {
             window.open('storekeeper_create_product_details.html', '_blank', 'width=800,height=600');
         }
@@ -88,15 +92,15 @@ function saveProduct() {
         },
         body: JSON.stringify(data)
     })
-        .then(function(response) {
+        .then(function (response) {
             if (!response.ok) {
                 throw new Error('Ошибка сети');
             }
-            return response.text().then(function(text) {
+            return response.text().then(function (text) {
                 if (text) {
                     try {
                         return JSON.parse(text);
-                    } catch(e) {
+                    } catch (e) {
                         console.error('Ошибка разбора JSON:', e);
                         return {};
                     }
@@ -105,11 +109,11 @@ function saveProduct() {
                 }
             });
         })
-        .then(function(data) {
+        .then(function (data) {
             document.getElementById('productForm').reset();
             alert('Товар сохранен');
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.error('Ошибка сети:', error);
         });
 

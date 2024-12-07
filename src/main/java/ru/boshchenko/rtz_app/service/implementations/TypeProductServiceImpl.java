@@ -84,4 +84,5 @@ public class TypeProductServiceImpl implements TypeProductService {
         typeRepo.save(typeProduct);
         return typeProductMapper.toTypeProductDto(typeProduct);
     }
+
 }

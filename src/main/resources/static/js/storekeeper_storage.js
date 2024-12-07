@@ -1,4 +1,4 @@
-async function getDataFromServer (url) {
+async function getDataFromServer(url) {
     let products;
     await fetch(url)
         .then(response => {
@@ -21,7 +21,6 @@ async function getDataFromServer (url) {
     console.log(products);
     return products;
 }
-
 
 let products = [];
 let currentPage = 1;
@@ -65,12 +64,10 @@ function changeMass(index, delta) {
 }
 
 function deleteForIndex(index) {
-
-console.log(index.name)
+    console.log(index.name)
     // TODO delete отправить на сервак
     alert(`Товар удален!`);
 }
-
 function changePage(action) {
     if (action === 'start') {
         currentPage = 1;
@@ -83,5 +80,4 @@ function changePage(action) {
     }
     renderProducts(currentPage);
 }
-
 renderProducts(currentPage);

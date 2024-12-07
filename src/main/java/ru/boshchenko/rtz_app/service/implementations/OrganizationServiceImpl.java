@@ -1,7 +1,7 @@
 package ru.boshchenko.rtz_app.service.implementations;
 
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
+
 import org.springframework.stereotype.Service;
 import ru.boshchenko.rtz_app.dto.OrganizationDto;
 import ru.boshchenko.rtz_app.mapper.OrganizationMapper;
@@ -53,7 +53,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public boolean deleteById(Long id) {
-        if(organizationRepo.existsById(id)){
+        if (organizationRepo.existsById(id)) {
             organizationRepo.deleteById(id);
             return true;
         }
@@ -73,7 +73,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public OrganizationDto updateOrganization(Long id, OrganizationDto organizationDto) {
         Organization organizationNew = organizationMapper.toOrganization(organizationDto);
-        if(organizationRepo.findById(id).isEmpty()){
+        if (organizationRepo.findById(id).isEmpty()) {
             return null;
         }
         Organization organization = organizationRepo.findById(id).get();
@@ -88,7 +88,6 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationRepo.save(organization);
         return organizationMapper.toOrganizationDto(organization);
     }
-
 
 }
 

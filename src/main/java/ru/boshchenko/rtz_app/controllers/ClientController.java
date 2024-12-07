@@ -9,29 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClientController {
 
     @GetMapping("/catalog_products")
-    public String clientProductsAllPage(){
+    public String clientProductsAllPage() {
         return "client_catalog_products.html";
     }
 
     @GetMapping("/chat")
-    public String clientChatPage(){
+    public String clientChatPage() {
         return "client_chat.html";
     }
 
     @GetMapping
-    public String clientMainPage(){
+    public String clientMainPage() {
         return "client_main.html";
     }
 
     @GetMapping("/order")
-    public String clientOrderPage(){
+    public String clientOrderPage() {
         return "client_order.html";
     }
 
     @GetMapping("/product_card")
-    public String productCardPage(){
+    public String productCardPage() {
         return "client_product_card.html";
     }
-
 
 }
