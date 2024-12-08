@@ -43,16 +43,29 @@
         </div>
 
         <div class="content">
-            <h1>СКЛАД</h1>
+            <h1>СКЛАД</h1>,
 
-
-            <div id="productList"></div>
-            <div class="pagination">
-                <button onclick="changePage('start')"><<</button>
-                <button onclick="changePage('prev')"><</button>
-                <button onclick="changePage('next')">></button>
-                <button onclick="changePage('end')">>></button>
+            <div class="container mt-5">
+                <div id="productList"></div>
+                <nav aria-label="Навигация по страницам" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <button class="page-link-my" onclick="changePage('start')">В начало</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="page-link-my" onclick="changePage('prev')">Назад</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="page-link-my" onclick="changePage('next')">Вперёд</button>
+                        </li>
+                        <li class="page-item">
+                            <button class="page-link-my" onclick="changePage('end')">В конец</button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+
+
 
 
         </div>
@@ -92,7 +105,7 @@
         </footer>
     </footer>
 </div>
-<script src="/js/storekeeper_storage.js"></script>
+<script src="/js/catalog_products.js"></script>
 <script src="/js/logout_fun.js"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -35,7 +35,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, RtzAuthenticationSuccessHandler successHandler) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   RtzAuthenticationSuccessHandler successHandler)
+            throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/", "main.html",
@@ -49,7 +51,8 @@ public class SecurityConfig {
                         .requestMatchers("/storekeeper/**").hasRole("STOREKEEPER")
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form.loginProcessingUrl("/login").permitAll().successHandler(successHandler)
+                .formLogin(form -> form.loginProcessingUrl("/login").permitAll()
+                        .successHandler(successHandler)
                 )
                 .logout(logout -> logout.logoutSuccessUrl("/main.html").permitAll()
                 )

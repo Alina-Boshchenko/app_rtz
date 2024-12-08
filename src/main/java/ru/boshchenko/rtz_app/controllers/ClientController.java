@@ -25,7 +25,7 @@ public class ClientController {
 
     @GetMapping("/order")
     public String clientOrderPage() {
-        return "client_order.html";
+        return "client_basket.html";
     }
 
     @GetMapping("/product_card")
