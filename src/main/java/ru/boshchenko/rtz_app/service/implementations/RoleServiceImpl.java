@@ -21,13 +21,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findByName(String name) {
-        //TODO сделать исключение
         return roleRepo.findByName(name).orElse(null);
     }
 
     @Override
     public Role findById(Long id) {
-        //TODO сделать исключение
         return roleRepo.findById(id).orElse(null);
     }
 

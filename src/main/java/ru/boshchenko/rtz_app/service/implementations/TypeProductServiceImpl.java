@@ -26,7 +26,6 @@ public class TypeProductServiceImpl implements TypeProductService {
     @Override
     public TypeProductDto findByName(String name) {
         Optional<TypeProduct> type = typeRepo.findByName(name);
-        //TODO сделать исключение
         if (type.isPresent()) {
             return typeProductMapper.toTypeProductDto(type.get());
         }
@@ -41,7 +40,6 @@ public class TypeProductServiceImpl implements TypeProductService {
     @Override
     public TypeProductDto findById(Long id) {
         Optional<TypeProduct> type = typeRepo.findById(id);
-        //TODO сделать исключение
         if (type.isPresent()) {
             return typeProductMapper.toTypeProductDto(type.get());
         }

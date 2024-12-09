@@ -3,6 +3,7 @@ package ru.boshchenko.rtz_app.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
@@ -24,7 +25,7 @@ public class Order extends BaseEntity {
     private boolean needInvoice;
 
     @Column(name = "amount")
-    private Double amount;
+    private BigDecimal amount;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

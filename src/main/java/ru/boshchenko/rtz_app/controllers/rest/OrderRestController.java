@@ -56,5 +56,4 @@ public class OrderRestController {
         orderService.deleteById(id);
         return new ResponseEntity<>("It's ok delete order", HttpStatus.OK);
     }
-
 }

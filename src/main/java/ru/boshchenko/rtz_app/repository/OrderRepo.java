@@ -6,5 +6,4 @@ import ru.boshchenko.rtz_app.model.Order;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Long> {
-
 }

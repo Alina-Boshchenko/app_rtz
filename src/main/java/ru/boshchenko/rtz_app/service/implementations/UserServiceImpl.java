@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findByUsernameDto(String username) {
-        //TODO сделать исключение
         return userMapper.toUserDto(userRepo.findByUsername(username).orElse(null));
     }
 
@@ -47,25 +46,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findByEmail(String email) {
-        //TODO сделать исключение
         return userMapper.toUserDto(userRepo.findByEmail(email).orElse(null));
     }
 
     @Override
     public UserDto findByInn(Long inn) {
-        //TODO сделать исключение
         return userMapper.toUserDto(userRepo.findByInn(inn).orElse(null));
     }
 
     @Override
     public UserDto findById(Long id) {
-        //TODO сделать исключение
         return userMapper.toUserDto(userRepo.findById(id).orElse(null));
     }
 
-    /**
-     * логирование
-     */
     @Override
     public List<UserDto> findAll() {
         List<UserDto> userDtoList = userRepo.findAll().stream().map(userMapper::toUserDto).toList();

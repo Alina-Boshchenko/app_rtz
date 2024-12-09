@@ -12,5 +12,4 @@ public interface OrganizationRepo extends JpaRepository<Organization, Long> {
     Optional<Organization> findByName(String name);
 
     Optional<Organization> findByInn(Long inn);
-
 }

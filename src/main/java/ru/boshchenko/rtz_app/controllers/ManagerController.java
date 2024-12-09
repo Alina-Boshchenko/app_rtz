@@ -17,5 +17,4 @@ public class ManagerController {
     public String managerProductCardPage() {
         return "manager_product_card.html";
     }
-
 }

@@ -26,7 +26,6 @@ public class StandardServiceImpl implements StandardService {
     @Override
     public StandardDto findByName(String name) {
         Optional<Standard> standard = standardRepo.findByName(name);
-        //TODO сделать исключение
         if (standard.isPresent()) {
             return standardMapper.toStandardDto(standard.get());
         }
@@ -41,7 +40,6 @@ public class StandardServiceImpl implements StandardService {
     @Override
     public StandardDto findById(Long id) {
         Optional<Standard> standard = standardRepo.findById(id);
-        //TODO сделать исключение
         if (standard.isPresent()) {
             return standardMapper.toStandardDto(standard.get());
         }

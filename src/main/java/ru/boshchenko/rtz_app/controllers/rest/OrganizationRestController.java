@@ -57,5 +57,4 @@ public class OrganizationRestController {
         organizationService.deleteById(id);
         return new ResponseEntity<>("It's ok delete product", HttpStatus.OK);
     }
-
 }

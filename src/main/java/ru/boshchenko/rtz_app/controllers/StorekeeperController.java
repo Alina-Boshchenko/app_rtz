@@ -28,10 +28,8 @@ public class StorekeeperController {
         return "storekeeper_storage.html";
     }
 
-
     @GetMapping("/product_card")
     public String storekeeperProductCardPage() {
         return "storekeeper_product_card.html";
     }
-
 }

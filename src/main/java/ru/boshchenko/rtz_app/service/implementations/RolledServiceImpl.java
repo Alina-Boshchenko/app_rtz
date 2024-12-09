@@ -27,7 +27,6 @@ public class RolledServiceImpl implements RolledService {
     @Override
     public RolledDto findByName(String name) {
         Optional<Rolled> rolled = rolledRepo.findByName(name);
-        //TODO сделать исключение
         if (rolled.isPresent()) {
             return rolledMapper.toRolledDto(rolled.get());
         }
@@ -42,7 +41,6 @@ public class RolledServiceImpl implements RolledService {
     @Override
     public RolledDto findById(Long id) {
         Optional<Rolled> rolled = rolledRepo.findById(id);
-        //TODO сделать исключение
         if (rolled.isPresent()) {
             return rolledMapper.toRolledDto(rolled.get());
         }

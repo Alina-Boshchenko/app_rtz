@@ -3,6 +3,7 @@ package ru.boshchenko.rtz_app.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
@@ -45,10 +46,10 @@ public class Product extends BaseEntity {
     private Double weight;
 
     @Column(nullable = false, name = "price_per_meter")
-    private Double pricePerMeter;
+    private BigDecimal pricePerMeter;
 
     @Column(nullable = false, name = "price_per_ton")
-    private Double pricePerTon;
+    private BigDecimal pricePerTon;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Collection<Order> orders;

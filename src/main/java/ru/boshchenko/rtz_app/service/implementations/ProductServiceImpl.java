@@ -26,7 +26,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto findByName(String name) {
         Optional<Product> product = productRepo.findByName(name);
-        //TODO сделать исключение
         if (product.isPresent()) {
             return productMapper.toProductDto(product.get());
         }
@@ -36,7 +35,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto findById(Long id) {
         Optional<Product> product = productRepo.findById(id);
-        //TODO сделать исключение
         if (product.isPresent()) {
             return productMapper.toProductDto(product.get());
         }
